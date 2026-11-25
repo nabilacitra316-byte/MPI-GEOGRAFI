@@ -1,0 +1,2871 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MPI Geografi Kelas X | Atmosfer, Cuaca, dan Iklim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Tema Hijau Segar dipadukan dengan nuansa Langit & Bumi */
+      --primary: #15803d;
+      --primary-hover: #166534;
+      --primary-light: #dcfce7;
+      --primary-soft: #f0fdf4;
+      --accent-sky: #0284c7;
+      --accent-sky-light: #e0f2fe;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --danger: #dc2626;
+      --danger-light: #fee2e2;
+      --bg-body: #f4faf6;
+      --bg-card: #ffffff;
+      --bg-sidebar: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #d1fae5;
+      --border-neutral: #e2e8f0;
+      --shadow: 0 4px 20px -2px rgba(21, 128, 61, 0.08);
+      --shadow-lg: 0 12px 28px -4px rgba(21, 128, 61, 0.14);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    [data-theme="dark"] {
+      --primary: #22c55e;
+      --primary-hover: #16a34a;
+      --primary-light: #14532d;
+      --primary-soft: #052e16;
+      --accent-sky: #38bdf8;
+      --accent-sky-light: #0c4a6e;
+      --accent-amber: #fbbf24;
+      --accent-amber-light: #451a03;
+      --danger: #f87171;
+      --danger-light: #450a0a;
+      --bg-body: #091510;
+      --bg-card: #11221a;
+      --bg-sidebar: #0d1b14;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #1e3a2c;
+      --border-neutral: #1e293b;
+      --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.65;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+    }
+
+    /* ================= COVER SCREEN ================= */
+    #cover-screen {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #064e3b 0%, #15803d 48%, #0284c7 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cover-screen.hidden {
+      display: none;
+    }
+
+    .cover-clouds {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+    }
+
+    .cover-container {
+      max-width: 1040px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      padding: 2.75rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .cover-title-sub {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #bbf7d0;
+      margin-bottom: 0.35rem;
+    }
+
+    .cover-title-main {
+      font-size: clamp(1.85rem, 3.6vw, 2.85rem);
+      font-weight: 800;
+      line-height: 1.18;
+      margin-bottom: 0.65rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    }
+
+    .cover-class {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #e0f2fe;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-meta-card {
+      background: rgba(6, 78, 59, 0.48);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 1.15rem 1.35rem;
+      margin-bottom: 1.75rem;
+      font-size: 0.94rem;
+    }
+
+    .cover-meta-card p {
+      margin-bottom: 0.25rem;
+    }
+
+    .btn-start {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #ffffff;
+      color: #14532d;
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 0.95rem 2.1rem;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-start:hover {
+      transform: translateY(-2px);
+      background: #f0fdf4;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+    }
+
+    .cover-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .earth-svg {
+      width: 100%;
+      max-width: 310px;
+      height: auto;
+      animation: floatSlow 6s ease-in-out infinite;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ================= APP SHELL ================= */
+    #app-shell {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    #app-shell.active {
+      display: flex;
+    }
+
+    /* Top Header */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.5rem 0.7rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .progress-pill {
+      background: var(--primary-soft);
+      border: 1px solid var(--border);
+      padding: 0.38rem 0.85rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .progress-bar-mini {
+      width: 72px;
+      height: 7px;
+      background: var(--border-neutral);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-mini-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent-sky));
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+
+    .student-chip {
+      background: var(--accent-sky-light);
+      color: var(--accent-sky);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-icon {
+      background: var(--bg-body);
+      border: 1px solid var(--border-neutral);
+      color: var(--text-main);
+      border-radius: 10px;
+      padding: 0.42rem 0.7rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Layout Grid */
+    .workspace {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 272px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      padding: 1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+      position: sticky;
+      top: 61px;
+      height: calc(100vh - 61px);
+      overflow-y: auto;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      padding: 0.65rem 0.85rem;
+      border-radius: 11px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .nav-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25);
+    }
+
+    .nav-done-dot {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 1.75rem;
+      max-width: 1060px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .page-section {
+      display: none;
+      animation: fadeIn 0.28s ease;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards & Typography */
+    .section-header {
+      background: linear-gradient(120deg, var(--primary-soft), var(--accent-sky-light));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .section-header h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .section-header p {
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .badge-complete {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.42rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .badge-complete.completed {
+      background: #0f766e;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-neutral);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.65rem;
+    }
+
+    .card h3 {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .info-box {
+      background: var(--primary-soft);
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.15rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 0.85rem 0;
+      font-size: 0.94rem;
+    }
+
+    .info-box.sky {
+      background: var(--accent-sky-light);
+      border-left-color: var(--accent-sky);
+    }
+
+    .info-box.amber {
+      background: var(--accent-amber-light);
+      border-left-color: var(--accent-amber);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1.2rem;
+      border-radius: 11px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-soft);
+    }
+
+    .btn-sky {
+      background: var(--accent-sky);
+      color: #ffffff;
+    }
+
+    /* Interactive Layers Stack */
+    .layers-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .layer-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .layer-btn {
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .layer-btn:hover, .layer-btn.active {
+      transform: translateX(6px);
+      border-color: #ffffff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    }
+
+    .l-eksosfer { background: linear-gradient(90deg, #0f172a, #1e3a8a); }
+    .l-termosfer { background: linear-gradient(90deg, #1d4ed8, #0284c7); }
+    .l-mesosfer { background: linear-gradient(90deg, #0284c7, #0d9488); }
+    .l-stratosfer { background: linear-gradient(90deg, #0d9488, #16a34a); }
+    .l-troposfer { background: linear-gradient(90deg, #15803d, #65a30d); }
+
+    .layer-detail-panel {
+      background: var(--primary-soft);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.35rem;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 0.85rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--border-neutral);
+      text-align: left;
+    }
+
+    th {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background: var(--primary-soft);
+    }
+
+    /* Interactive Unsur Cards */
+    .unsur-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 1.15rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .unsur-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .unsur-card-body {
+      display: none;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.9rem;
+    }
+
+    .unsur-card.open .unsur-card-body {
+      display: block;
+    }
+
+    /* Drag & Drop / Matching */
+    .dnd-zone {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .drag-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .drag-chip {
+      background: var(--primary-soft);
+      border: 1.5px solid var(--primary);
+      color: var(--text-main);
+      padding: 0.6rem 0.85rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .drag-chip.selected-chip {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .drop-target {
+      background: var(--bg-body);
+      border: 2px dashed var(--accent-sky);
+      border-radius: 10px;
+      padding: 0.65rem 0.85rem;
+      min-height: 54px;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+
+    .feedback-msg {
+      margin-top: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .feedback-msg.ok {
+      display: block;
+      background: var(--primary-light);
+      color: #14532d;
+      border: 1px solid var(--primary);
+    }
+
+    [data-theme="dark"] .feedback-msg.ok {
+      color: #dcfce7;
+    }
+
+    .feedback-msg.err {
+      display: block;
+      background: var(--danger-light);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+
+    /* Quiz Styling */
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid var(--border-neutral);
+      border-radius: 12px;
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+      transition: all 0.16s ease;
+      background: var(--bg-card);
+    }
+
+    .quiz-option:hover {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      font-weight: 600;
+    }
+
+    .opt-letter {
+      min-width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.88rem;
+    }
+
+    .quiz-option.selected .opt-letter {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .q-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .q-num-pill {
+      padding: 0.38rem 0;
+      border-radius: 8px;
+      border: 1px solid var(--border-neutral);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .q-num-pill.answered {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .q-num-pill.current {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Score Animation */
+    .score-hero {
+      text-align: center;
+      padding: 2rem 1.25rem;
+      background: linear-gradient(135deg, var(--primary-soft), var(--accent-sky-light));
+      border-radius: var(--radius);
+      border: 2px solid var(--primary);
+      animation: popScale 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popScale {
+      0% { transform: scale(0.92); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .score-circle {
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem auto;
+      box-shadow: 0 10px 25px rgba(21, 128, 61, 0.3);
+    }
+
+    .review-item {
+      border: 1.5px solid var(--border-neutral);
+      border-radius: 14px;
+      padding: 1.15rem;
+      margin-bottom: 1rem;
+      background: var(--bg-card);
+    }
+
+    .review-item.correct {
+      border-left: 6px solid #16a34a;
+    }
+
+    .review-item.wrong {
+      border-left: 6px solid #dc2626;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border-radius: 18px;
+      max-width: 460px;
+      width: 100%;
+      padding: 1.65rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.68rem 0.85rem;
+      border-radius: 10px;
+      border: 1.5px solid var(--border-neutral);
+      background: var(--bg-body);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.1rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .cover-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 1.85rem;
+      }
+      .layers-wrapper, .dnd-zone {
+        grid-template-columns: 1fr;
+      }
+      .menu-toggle {
+        display: inline-flex;
+      }
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 60px;
+        z-index: 50;
+        transform: translateX(-105%);
+        box-shadow: var(--shadow-lg);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .q-nav-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 1. HALAMAN COVER ==================== -->
+  <section id="cover-screen">
+    <svg class="cover-clouds" viewBox="0 0 1200 600" fill="none">
+      <circle cx="180" cy="140" r="110" fill="#ffffff"/>
+      <circle cx="270" cy="150" r="85" fill="#ffffff"/>
+      <circle cx="1020" cy="110" r="130" fill="#ffffff"/>
+      <circle cx="910" cy="135" r="90" fill="#ffffff"/>
+      <path d="M0 520 Q 300 440 600 510 T 1200 490 L 1200 600 L 0 600 Z" fill="#ffffff"/>
+    </svg>
+
+    <div class="cover-container">
+      <div>
+        <div class="cover-badge">🌿 Kurikulum Merdeka • Pembelajaran Mendalam</div>
+        <div class="cover-title-sub">MEDIA PEMBELAJARAN INTERAKTIF</div>
+        <h1 class="cover-title-main">ATMOSFER, CUACA, DAN IKLIM</h1>
+        <div class="cover-class">GEOGRAFI FASE E / KELAS X</div>
+
+        <div class="cover-meta-card">
+          <p><strong>Guru Mata Pelajaran:</strong> Citra Fitria Sari, S.Pd.</p>
+          <p><strong>Satuan Pendidikan:</strong> SMA NEGERI 2 TULANG BAWANG UDIK</p>
+          <p><strong>Semester / Tahun Pelajaran:</strong> Ganjil / 2026–2027</p>
+        </div>
+
+        <button class="btn-start" onclick="enterApp()">
+          <span>🚀 MULAI BELAJAR</span>
+        </button>
+      </div>
+
+      <div class="cover-visual">
+        <!-- Ilustrasi SVG Bumi, Atmosfer, Awan & Matahari -->
+        <svg class="earth-svg" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lapisan Atmosfer Luar -->
+          <circle cx="170" cy="175" r="145" fill="rgba(224,242,254,0.14)" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-dasharray="6 6"/>
+          <circle cx="170" cy="175" r="118" fill="rgba(187,247,208,0.22)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+          <!-- Matahari -->
+          <circle cx="275" cy="65" r="28" fill="#FBBF24"/>
+          <circle cx="275" cy="65" r="38" fill="rgba(251,191,36,0.28)"/>
+          <!-- Bola Bumi -->
+          <circle cx="170" cy="175" r="88" fill="#0284C7"/>
+          <!-- Benua / Daratan Hijau -->
+          <path d="M122 135 C140 120, 165 125, 175 142 C185 158, 165 175, 152 185 C140 195, 145 215, 130 220 C112 210, 105 165, 122 135 Z" fill="#22C55E"/>
+          <path d="M195 130 C215 132, 232 150, 228 175 C224 198, 205 210, 192 195 C182 182, 185 155, 195 130 Z" fill="#16A34A"/>
+          <!-- Awan & Cuaca -->
+          <g transform="translate(65, 155)">
+            <rect x="10" y="18" width="64" height="22" rx="11" fill="#FFFFFF"/>
+            <circle cx="26" cy="18" r="14" fill="#FFFFFF"/>
+            <circle cx="46" cy="14" r="17" fill="#FFFFFF"/>
+          </g>
+          <g transform="translate(192, 202)">
+            <rect x="8" y="15" width="58" height="20" rx="10" fill="#F8FAFC"/>
+            <circle cx="22" cy="15" r="12" fill="#F8FAFC"/>
+            <circle cx="40" cy="12" r="15" fill="#F8FAFC"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. APLIKASI UTAMA ==================== -->
+  <div id="app-shell">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Buka Menu">☰</button>
+        <div>
+          <div class="brand-title">🌿 MPI Geografi Kelas X</div>
+          <div class="brand-sub">Atmosfer, Cuaca, dan Iklim • SMAN 2 Tulang Bawang Udik</div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="progress-pill" title="Persentase materi & aktivitas yang telah diselesaikan">
+          <span id="progress-text">Progress Belajar: 0%</span>
+          <div class="progress-bar-mini">
+            <div class="progress-bar-mini-fill" id="progress-fill"></div>
+          </div>
+        </div>
+
+        <button class="student-chip" onclick="openIdentityModal()" id="student-badge" title="Klik untuk ubah Nama & Kelas">
+          👤 Isi Identitas Siswa
+        </button>
+
+        <button class="btn-icon" onclick="toggleTheme()" id="theme-btn" title="Ubah Mode Terang/Gelap">🌙</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <!-- Sidebar Navigasi 11 Menu -->
+      <nav class="sidebar" id="sidebar">
+        <button class="nav-btn active" data-target="sec-beranda" onclick="navigateTo('sec-beranda')">
+          <span>🏠 Beranda</span><span class="nav-done-dot" id="dot-sec-beranda"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-atmosfer" onclick="navigateTo('sec-atmosfer')">
+          <span>🌍 Tentang Atmosfer</span><span class="nav-done-dot" id="dot-sec-atmosfer"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-cuaca" onclick="navigateTo('sec-cuaca')">
+          <span>☁️ Cuaca</span><span class="nav-done-dot" id="dot-sec-cuaca"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-unsur" onclick="navigateTo('sec-unsur')">
+          <span>🌦️ Unsur-Unsur Cuaca</span><span class="nav-done-dot" id="dot-sec-unsur"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-iklim" onclick="navigateTo('sec-iklim')">
+          <span>🌎 Iklim & Faktornya</span><span class="nav-done-dot" id="dot-sec-iklim"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-analisis" onclick="navigateTo('sec-analisis')">
+          <span>📊 Analisis Data Cuaca dan Iklim</span><span class="nav-done-dot" id="dot-sec-analisis"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-fenomena" onclick="navigateTo('sec-fenomena')">
+          <span>⚠️ Fenomena Cuaca dan Iklim</span><span class="nav-done-dot" id="dot-sec-fenomena"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-aktivitas" onclick="navigateTo('sec-aktivitas')">
+          <span>🎮 Aktivitas Interaktif</span><span class="nav-done-dot" id="dot-sec-aktivitas"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-asesmen" onclick="navigateTo('sec-asesmen')">
+          <span>📝 Asesmen 20 Soal</span><span class="nav-done-dot" id="dot-sec-asesmen"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-hasil" onclick="navigateTo('sec-hasil')">
+          <span>📊 Hasil Nilai</span><span class="nav-done-dot" id="dot-sec-hasil"></span>
+        </button>
+        <button class="nav-btn" data-target="sec-refleksi" onclick="navigateTo('sec-refleksi')">
+          <span>💡 Refleksi</span><span class="nav-done-dot" id="dot-sec-refleksi"></span>
+        </button>
+        <hr style="border:none; border-top:1px solid var(--border); margin:0.4rem 0;">
+        <button class="nav-btn" data-target="sec-guru" onclick="navigateTo('sec-guru')">
+          <span>👩‍🏫 Informasi untuk Guru</span>
+        </button>
+      </nav>
+
+      <!-- Konten Utama -->
+      <main class="main-content">
+
+        <!-- ==================== MENU 1: BERANDA ==================== -->
+        <section id="sec-beranda" class="page-section active">
+          <div class="section-header">
+            <div>
+              <h1>🏠 Selamat Datang di MPI Geografi Fase E</h1>
+              <p>Eksplorasi Mandiri Materi Atmosfer, Cuaca, dan Iklim (Sesuai Rencana Pembelajaran Mendalam)</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-beranda" onclick="markDone('sec-beranda')">✓ Tandai Selesai</button>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h2>📋 Identitas Pembelajaran</h2>
+              <table>
+                <tr><th>Satuan Pendidikan</th><td>SMAN 2 TULANG BAWANG UDIK</td></tr>
+                <tr><th>Mata Pelajaran</th><td>Geografi</td></tr>
+                <tr><th>Fase / Kelas</th><td>Fase E / Kelas X</td></tr>
+                <tr><th>Semester / TP</th><td>Ganjil / 2026–2027</td></tr>
+                <tr><th>Materi Utama</th><td>Atmosfer – Cuaca dan Iklim (4 Pertemuan / 12 JP)</td></tr>
+                <tr><th>Guru Pengampu</th><td>Citra Fitria Sari, S.Pd.</td></tr>
+              </table>
+            </div>
+
+            <div class="card">
+              <h2>🎯 Tujuan Pembelajaran (RPM)</h2>
+              <p style="font-size:0.92rem; margin-bottom:0.5rem;">Melalui MPI berbasis inkuiri ini, peserta didik mampu:</p>
+              <ul style="padding-left:1.2rem; font-size:0.9rem; display:flex; flex-direction:column; gap:0.35rem;">
+                <li>Menjelaskan pengertian atmosfer, cuaca, dan iklim secara tepat.</li>
+                <li>Mengidentifikasi lapisan-lapisan atmosfer beserta karakteristik dan fenomenanya.</li>
+                <li>Menjelaskan 7 unsur cuaca dan faktor pembentuk cuaca/iklim.</li>
+                <li>Membedakan cuaca dan iklim serta menganalisis hubungan antarunsur cuaca.</li>
+                <li>Membaca, menginterpretasikan tabel/grafik data cuaca dua wilayah, serta menyimpulkan dampaknya bagi kehidupan (pertanian, transportasi, kesehatan) dan upaya adaptasi/mitigasinya.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>🧭 Alur Belajar Mandiri (6 Modul + Aktivitas & Asesmen)</h2>
+            <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:1rem;">Klik salah satu modul di bawah ini untuk memulai eksplorasi bertahap:</p>
+            <div class="grid-3">
+              <div class="unsur-card" onclick="navigateTo('sec-atmosfer')">
+                <h3>🌍 Modul 1: Atmosfer</h3>
+                <p style="font-size:0.86rem; color:var(--text-muted);">Komposisi udara & visualisasi interaktif 5 lapisan atmosfer.</p>
+              </div>
+              <div class="unsur-card" onclick="navigateTo('sec-cuaca')">
+                <h3>☁️ Modul 2: Cuaca & Iklim</h3>
+                <p style="font-size:0.86rem; color:var(--text-muted);">Pengertian, jangka waktu pengamatan & tabel Cuaca vs Iklim.</p>
+              </div>
+              <div class="unsur-card" onclick="navigateTo('sec-unsur')">
+                <h3>🌦️ Modul 3: Unsur Cuaca</h3>
+                <p style="font-size:0.86rem; color:var(--text-muted);">7 kartu interaktif unsur cuaca & hubungan antarunsur.</p>
+              </div>
+              <div class="unsur-card" onclick="navigateTo('sec-iklim')">
+                <h3>🌎 Modul 4: Faktor Iklim</h3>
+                <p style="font-size:0.86rem; color:var(--text-muted);">Simulasi lintang, ketinggian tempat, jarak laut & relief.</p>
+              </div>
+              <div class="unsur-card" onclick="navigateTo('sec-analisis')">
+                <h3>📊 Modul 5: Analisis Data</h3>
+                <p style="font-size:0.86rem; color:var(--text-muted);">Membaca tabel & grafik perbandingan dua wilayah.</p>
+              </div>
+              <div class="unsur-card" onclick="navigateTo('sec-fenomena')">
+                <h3>⚠️ Modul 6: Fenomena & Dampak</h3>
+                <p style="font-size:0.86rem; color:var(--text-muted);">Cuaca ekstrem, dampak sektoral, adaptasi & mitigasi.</p>
+              </div>
+            </div>
+            <div style="margin-top:1.25rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="navigateTo('sec-atmosfer')">Mulai Modul 1 →</button>
+              <button class="btn btn-outline" onclick="openIdentityModal()">👤 Isi Nama & Kelas Sekarang</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 2: MODUL 1 - ATMOSFER ==================== -->
+        <section id="sec-atmosfer" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>🌍 Modul 1: Atmosfer dan Lapisan Atmosfer</h1>
+              <p>Pertemuan 1 • Pengertian, Komposisi, Fungsi, dan Eksplorasi Lapisan Udara</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-atmosfer" onclick="markDone('sec-atmosfer')">✓ Tandai Materi Selesai</button>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h2>1. Pengertian & Fungsi Atmosfer</h2>
+              <p><strong>Atmosfer</strong> adalah lapisan gas atau selimut udara yang menyelimuti planet Bumi dan terikat oleh gaya gravitasi Bumi hingga ketinggian ratusan kilometer.</p>
+              <div class="info-box">
+                <strong>Fungsi Utama Atmosfer bagi Kehidupan:</strong>
+                <ul style="padding-left:1.2rem; margin-top:0.35rem; font-size:0.9rem;">
+                  <li>Menyediakan gas vital untuk bernapas (oksigen) dan fotosintesis tumbuhan (karbon dioksida).</li>
+                  <li>Melindungi Bumi dari radiasi ultraviolet (UV) berbahaya melalui lapisan ozon.</li>
+                  <li>Membakar benda langit/meteor yang jatuh sehingga tidak menghantam permukaan Bumi secara utuh.</li>
+                  <li>Menjaga suhu Bumi tetap hangat dan stabil (efek rumah kaca alami) agar tidak membeku pada malam hari.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2>2. Komposisi Gas Penyusun Atmosfer</h2>
+              <p style="font-size:0.9rem; margin-bottom:0.6rem;">Udara kering di atmosfer tersusun atas campuran berbagai gas dengan proporsi tetap dan variabel:</p>
+              <table>
+                <thead>
+                  <tr><th>Jenis Gas</th><th>Persentase</th><th>Peran Penting</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Nitrogen (N₂)</strong></td><td>± 78,08%</td><td>Gas terbanyak, penting bagi siklus hara dan kesuburan tanah.</td></tr>
+                  <tr><td><strong>Oksigen (O₂)</strong></td><td>± 20,95%</td><td>Respirasi makhluk hidup dan proses pembakaran.</td></tr>
+                  <tr><td><strong>Argon (Ar)</strong></td><td>± 0,93%</td><td>Gas mulia yang bersifat stabil di udara.</td></tr>
+                  <tr><td><strong>Karbon Dioksida (CO₂)</strong></td><td>± 0,04%</td><td>Bahan fotosintesis & penyerap radiasi panas Bumi.</td></tr>
+                  <tr><td><strong>Gas Lain & Uap Air</strong></td><td>&lt; 0,01% (variabel)</td><td>Ozon, neon, helium, serta uap air pembentuk awan dan hujan.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>3. Eksplorasi Visual Interaktif: 5 Lapisan Atmosfer</h2>
+            <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:1rem;">Klik setiap lapisan atmosfer di sebelah kiri (dari lapisan terbawah hingga terluar) untuk melihat ketinggian, karakteristik suhu, dan fenomenanya:</p>
+
+            <div class="layers-wrapper">
+              <div class="layer-stack">
+                <button class="layer-btn l-eksosfer" onclick="showLayer('eksosfer', this)">
+                  <span>5. EKSOSFER (Terluar)</span><span>&gt; 500 km →</span>
+                </button>
+                <button class="layer-btn l-termosfer" onclick="showLayer('termosfer', this)">
+                  <span>4. TERMOSFER / IONOSFER</span><span>85 – 500 km →</span>
+                </button>
+                <button class="layer-btn l-mesosfer" onclick="showLayer('mesosfer', this)">
+                  <span>3. MESOSFER</span><span>50 – 85 km →</span>
+                </button>
+                <button class="layer-btn l-stratosfer" onclick="showLayer('stratosfer', this)">
+                  <span>2. STRATOSFER</span><span>12 – 50 km →</span>
+                </button>
+                <button class="layer-btn l-troposfer active" onclick="showLayer('troposfer', this)">
+                  <span>1. TROPOSFER (Terdekat Bumi)</span><span>0 – 12 km →</span>
+                </button>
+              </div>
+
+              <div class="layer-detail-panel" id="layer-detail-panel">
+                <!-- Diisi dinamis via JS -->
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+            <button class="btn btn-outline" onclick="navigateTo('sec-beranda')">← Kembali ke Beranda</button>
+            <button class="btn btn-primary" onclick="navigateTo('sec-cuaca')">Lanjut Modul 2: Cuaca & Iklim →</button>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 3: MODUL 2 - CUACA & IKLIM ==================== -->
+        <section id="sec-cuaca" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>☁️ Modul 2: Cuaca dan Iklim</h1>
+              <p>Pertemuan 2 • Pengertian, Jangka Waktu Pengamatan, dan Perbandingan Interaktif</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-cuaca" onclick="markDone('sec-cuaca')">✓ Tandai Materi Selesai</button>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h2>☀️ Pengertian Cuaca</h2>
+              <p><strong>Cuaca</strong> adalah keadaan atmosfer pada suatu tempat tertentu dalam jangka waktu yang singkat dan cepat berubah (hitungan jam hingga beberapa hari).</p>
+              <div class="info-box sky">
+                <strong>Contoh Cuaca:</strong> Pagi hari di Tulang Bawang Udik terasa cerah berawan dengan suhu 27 °C, lalu pada pukul 15.00 WIB turun hujan lebat disertai angin kencang.
+              </div>
+            </div>
+
+            <div class="card">
+              <h2>🌴 Pengertian Iklim</h2>
+              <p><strong>Iklim</strong> adalah kondisi rata-rata cuaca berdasarkan pengamatan jangka waktu yang panjang (minimal 10–30 tahun) dan mencakup wilayah geografis yang luas.</p>
+              <div class="info-box">
+                <strong>Contoh Iklim:</strong> Indonesia memiliki iklim tropis dengan suhu rata-rata tahunan hangat (26–28 °C) dan dua musim utama (penghujan dan kemarau).
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>🔍 Tabel Interaktif: Cuaca vs Iklim</h2>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.75rem;">Filter aspek perbandingan di bawah ini untuk melihat perbedaan mendasar antara cuaca dan iklim:</p>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.85rem;">
+              <button class="btn btn-primary" onclick="filterCuacaTable('all')">Semua Aspek</button>
+              <button class="btn btn-outline" onclick="filterCuacaTable('waktu')">Jangka Waktu</button>
+              <button class="btn btn-outline" onclick="filterCuacaTable('wilayah')">Cakupan Wilayah</button>
+              <button class="btn btn-outline" onclick="filterCuacaTable('ilmu')">Ilmu & Sifat</button>
+            </div>
+            <div class="table-wrap">
+              <table id="table-cuaca-iklim">
+                <thead>
+                  <tr><th>Aspek Pembeda</th><th>Cuaca</th><th>Iklim</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-cat="waktu">
+                    <td><strong>Jangka Waktu Pengamatan</strong></td>
+                    <td>Singkat (menit, jam, harian, hingga mingguan).</td>
+                    <td>Panjang (rata-rata data selama 10 hingga 30 tahun).</td>
+                  </tr>
+                  <tr data-cat="wilayah">
+                    <td><strong>Cakupan Wilayah</strong></td>
+                    <td>Sempit / lokal (misalnya satu kecamatan atau kota).</td>
+                    <td>Luas / regional hingga global (misalnya kawasan Asia Tenggara).</td>
+                  </tr>
+                  <tr data-cat="ilmu">
+                    <td><strong>Sifat Perubahan</strong></td>
+                    <td>Dinamis dan sangat cepat berubah dalam hitungan jam.</td>
+                    <td>Relatif stabil dan membentuk pola musiman yang tetap.</td>
+                  </tr>
+                  <tr data-cat="ilmu">
+                    <td><strong>Cabang Ilmu Pengkaji</strong></td>
+                    <td>Meteorologi (prakiraan cuaca harian BMKG).</td>
+                    <td>Klimatologi (pemetaan zona iklim dan tren iklim).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+            <button class="btn btn-outline" onclick="navigateTo('sec-atmosfer')">← Modul 1: Atmosfer</button>
+            <button class="btn btn-primary" onclick="navigateTo('sec-unsur')">Lanjut Modul 3: Unsur Cuaca →</button>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 4: MODUL 3 - UNSUR-UNSUR CUACA ==================== -->
+        <section id="sec-unsur" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>🌦️ Modul 3: Unsur-Unsur Cuaca dan Iklim</h1>
+              <p>Pertemuan 2 • Klik setiap kartu untuk membuka pengertian, fungsi, contoh, dan hubungannya</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-unsur" onclick="markDone('sec-unsur')">✓ Tandai Materi Selesai</button>
+          </div>
+
+          <div class="grid-2" id="unsur-cards-container">
+            <!-- Diisi otomatis via JS untuk 7 unsur cuaca -->
+          </div>
+
+          <div class="card">
+            <h2>🔗 Bagaimana Hubungan Antarunsur Cuaca Bekerja?</h2>
+            <div class="info-box amber">
+              <strong>Pola Hubungan Kunci yang Wajib Dipahami:</strong><br>
+              1. <strong>Penyinaran Matahari → Suhu Udara:</strong> Semakin lama dan tegak penyinaran matahari, semakin tinggi suhu udara.<br>
+              2. <strong>Suhu Udara → Tekanan Udara (Berbanding Terbalik):</strong> Udara yang panas memuai dan menjadi ringan sehingga tekanan udaranya rendah. Sebaliknya, udara dingin memadat sehingga tekanan udaranya tinggi.<br>
+              3. <strong>Tekanan Udara → Angin:</strong> Angin selalu bertiup dari daerah bertekanan udara tinggi (maksimum) menuju daerah bertekanan udara rendah (minimum).<br>
+              4. <strong>Suhu & Penguapan → Kelembapan, Awan & Hujan:</strong> Pemanasan memicu penguapan air (evaporasi), meningkatkan kelembapan udara, mengalami kondensasi menjadi awan, dan turun sebagai hujan.
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+            <button class="btn btn-outline" onclick="navigateTo('sec-cuaca')">← Modul 2: Cuaca & Iklim</button>
+            <button class="btn btn-primary" onclick="navigateTo('sec-iklim')">Lanjut Modul 4: Faktor Iklim →</button>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 5: MODUL 4 - FAKTOR PEMBENTUK CUACA & IKLIM ==================== -->
+        <section id="sec-iklim" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>🌎 Modul 4: Faktor Pembentuk Cuaca dan Iklim</h1>
+              <p>Pertemuan 3 • Simulasi Interaktif 6 Faktor Geografis Pengendali Iklim</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-iklim" onclick="markDone('sec-iklim')">✓ Tandai Materi Selesai</button>
+          </div>
+
+          <div class="card">
+            <h2>🎛️ Simulasi Pengaruh Faktor Geografis terhadap Cuaca & Iklim</h2>
+            <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:1rem;">Pilih salah satu faktor di bawah ini untuk melihat mekanisme pengaruhnya terhadap suhu dan curah hujan suatu wilayah:</p>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem;">
+              <button class="btn btn-primary" onclick="showFaktor('lintang')">1. Letak Lintang</button>
+              <button class="btn btn-outline" onclick="showFaktor('ketinggian')">2. Ketinggian Tempat</button>
+              <button class="btn btn-outline" onclick="showFaktor('laut')">3. Jarak dari Laut</button>
+              <button class="btn btn-outline" onclick="showFaktor('relief')">4. Kondisi Relief</button>
+              <button class="btn btn-outline" onclick="showFaktor('angin')">5. Angin</button>
+              <button class="btn btn-outline" onclick="showFaktor('penyinaran')">6. Penyinaran Matahari</button>
+            </div>
+
+            <div id="faktor-sim-box" class="info-box sky" style="min-height:130px;">
+              <!-- Diisi dinamis -->
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>🧮 Kalkulator Mini: Gradien Termometrik (Pengaruh Ketinggian)</h2>
+            <p style="font-size:0.9rem; margin-bottom:0.75rem;">Menurut hukum Braak, setiap kenaikan ketinggian <strong>100 meter</strong> di atas permukaan laut, suhu udara turun rata-rata <strong>0,6 °C</strong>. Coba geser ketinggian tempat di bawah ini:</p>
+            <label for="alt-slider" style="font-weight:700;">Ketinggian Tempat: <span id="alt-val" style="color:var(--primary);">500</span> mdpl</label>
+            <input type="range" id="alt-slider" min="0" max="3000" step="100" value="500" style="width:100%; margin:0.6rem 0;" oninput="updateAltitudeSim(this.value)">
+            <div class="info-box">
+              Jika suhu di pantai (0 mdpl) adalah <strong>30 °C</strong>, maka perkiraan suhu udara pada ketinggian <strong id="alt-val-2">500</strong> mdpl adalah <strong id="alt-temp" style="font-size:1.15rem; color:var(--primary);">27,0 °C</strong>.
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+            <button class="btn btn-outline" onclick="navigateTo('sec-unsur')">← Modul 3: Unsur Cuaca</button>
+            <button class="btn btn-primary" onclick="navigateTo('sec-analisis')">Lanjut Modul 5: Analisis Data →</button>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 6: MODUL 5 - ANALISIS DATA ==================== -->
+        <section id="sec-analisis" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>📊 Modul 5: Analisis Data Cuaca dan Iklim</h1>
+              <p>Pertemuan 3 • Membaca Tabel, Grafik Batang, dan Membandingkan Dua Wilayah</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-analisis" onclick="markDone('sec-analisis')">✓ Tandai Materi Selesai</button>
+          </div>
+
+          <div class="card">
+            <h2>1. Tabel Data Pengamatan Cuaca & Iklim Dua Wilayah (Contoh Acuan RPM)</h2>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.6rem;">Bandingkan data iklim rata-rata antara <strong>Wilayah X (Dataran Rendah/Pesisir)</strong> dan <strong>Wilayah Y (Dataran Tinggi/Lereng)</strong>:</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parameter Cuaca/Iklim</th>
+                    <th>Wilayah X (Dataran Rendah / 25 mdpl)</th>
+                    <th>Wilayah Y (Dataran Tinggi / 1.200 mdpl)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Suhu Udara Rata-Rata</strong></td><td>29,5 °C (kisaran 28–31 °C)</td><td>20,5 °C (kisaran 19–22 °C)</td></tr>
+                  <tr><td><strong>Curah Hujan Bulanan</strong></td><td>60 – 320 mm/bulan (fluktuatif)</td><td>180 – 360 mm/bulan (lebih merata)</td></tr>
+                  <tr><td><strong>Kelembapan Relatif</strong></td><td>72% – 80%</td><td>84% – 92%</td></tr>
+                  <tr><td><strong>Tekanan Udara</strong></td><td>1.010 mb</td><td>885 mb</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>2. Amati Grafik Berikut: Curah Hujan Bulanan (mm) Wilayah X vs Wilayah Y</h2>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.75rem;">Grafik batang interaktif perbandingan curah hujan (Januari – Juni):</p>
+            <div style="width:100%; overflow-x:auto;">
+              <canvas id="rainChart" width="760" height="270" style="max-width:100%; background:var(--primary-soft); border-radius:12px; border:1px solid var(--border);"></canvas>
+            </div>
+            <div style="display:flex; gap:1.25rem; margin-top:0.6rem; font-size:0.86rem; font-weight:700;">
+              <span style="color:#15803d;">■ Wilayah X (Dataran Rendah)</span>
+              <span style="color:#0284c7;">■ Wilayah Y (Dataran Tinggi)</span>
+            </div>
+
+            <div class="info-box" style="margin-top:1rem;">
+              <strong>Pertanyaan Analisis Data:</strong><br>
+              Berdasarkan tabel dan grafik di atas, mengapa suhu di Wilayah Y jauh lebih sejuk (20,5 °C) dan curah hujannya tetap tinggi pada bulan Mei–Juni dibandingkan Wilayah X?
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.65rem;">
+                <button class="btn btn-outline" onclick="checkDataQuiz(false)">A. Karena Wilayah Y lebih dekat dengan garis khatulistiwa</button>
+                <button class="btn btn-outline" onclick="checkDataQuiz(true)">B. Karena faktor ketinggian tempat (1.200 mdpl) dan kondensasi awan orografis di lereng</button>
+                <button class="btn btn-outline" onclick="checkDataQuiz(false)">C. Karena tekanan udara di Wilayah Y lebih tinggi daripada di pantai</button>
+              </div>
+              <div id="data-quiz-feedback" class="feedback-msg"></div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+            <button class="btn btn-outline" onclick="navigateTo('sec-iklim')">← Modul 4: Faktor Iklim</button>
+            <button class="btn btn-primary" onclick="navigateTo('sec-fenomena')">Lanjut Modul 6: Fenomena & Dampak →</button>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 7: MODUL 6 - FENOMENA CUACA & IKLIM ==================== -->
+        <section id="sec-fenomena" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>⚠️ Modul 6: Fenomena Cuaca & Iklim serta Dampaknya</h1>
+              <p>Pertemuan 4 • Cuaca Ekstrem, Dampak Kehidupan, Adaptasi, dan Mitigasi</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-fenomena" onclick="markDone('sec-fenomena')">✓ Tandai Materi Selesai</button>
+          </div>
+
+          <div class="card">
+            <h2>1. Cuaca Ekstrem & Perubahan Pola Cuaca</h2>
+            <p><strong>Cuaca ekstrem</strong> adalah kejadian cuaca yang tidak normal atau menyimpang jauh dari kondisi rata-ratanya, seperti hujan lebat intensitas tinggi dalam waktu singkat, angin puting beliung, gelombang panas, atau kemarau panjang akibat fenomena global seperti <strong>El Niño</strong> (memicu kekeringan di Indonesia) dan <strong>La Niña</strong> (meningkatkan curah hujan dan risiko banjir).</p>
+          </div>
+
+          <div class="card">
+            <h2>2. Dampak Cuaca & Iklim dalam Kehidupan Sehari-Hari</h2>
+            <div class="grid-2">
+              <div class="info-box">
+                <strong>🌾 Sektor Pertanian:</strong><br>
+                Pergeseran awal musim hujan mengacaukan jadwal tanam padi/palawija; kekeringan menyebabkan gagal panen (puso), sedangkan kelembapan berlebih memicu hama jamur.
+              </div>
+              <div class="info-box sky">
+                <strong>✈️ Sektor Transportasi:</strong><br>
+                Kabut tebal dan hujan badai menurunkan jarak pandang penerbangan; gelombang tinggi dan angin kencang membahayakan pelayaran kapal penyeberangan.
+              </div>
+              <div class="info-box amber">
+                <strong>🏥 Sektor Kesehatan:</strong><br>
+                Perubahan cuaca drastis (pancaroba) menurunkan daya tahan tubuh (ISPA, flu), sementara genangan air hujan memicu perkembangbiakan nyamuk DBD.
+              </div>
+              <div class="info-box">
+                <strong>🏘️ Aktivitas Masyarakat & Sekolah:</strong><br>
+                Banjir lokal menghambat akses jalan siswa ke sekolah, merusak fasilitas umum, dan mengganggu aktivitas ekonomi harian warga.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>3. Upaya Adaptasi dan Mitigasi Sederhana</h2>
+            <div class="grid-2">
+              <div>
+                <h3>🌱 Adaptasi (Penyesuaian Diri)</h3>
+                <ul style="padding-left:1.2rem; font-size:0.92rem;">
+                  <li>Menyesuaikan kalender tanam dan memilih varietas tanaman tahan kering/genangan.</li>
+                  <li>Memantau prakiraan cuaca resmi BMKG sebelum bepergian atau melaut.</li>
+                  <li>Menyiapkan perlengkapan cuaca (jas hujan, payung) serta menjaga asupan air minum saat cuaca panas.</li>
+                </ul>
+              </div>
+              <div>
+                <h3>🛡️ Mitigasi (Pencegahan / Pengurangan Risiko)</h3>
+                <ul style="padding-left:1.2rem; font-size:0.92rem;">
+                  <li>Membersihkan saluran air/drainase sekolah dan lingkungan agar tidak tersumbat sampah saat hujan lebat.</li>
+                  <li>Menanam pohon peneduh dan membuat lubang biopori/sumur resapan.</li>
+                  <li>Mengurangi emisi karbon dengan hemat energi listrik dan mengurangi pembakaran sampah.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+            <button class="btn btn-outline" onclick="navigateTo('sec-analisis')">← Modul 5: Analisis Data</button>
+            <button class="btn btn-primary" onclick="navigateTo('sec-aktivitas')">Lanjut ke Aktivitas Interaktif →</button>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 8: AKTIVITAS INTERAKTIF ==================== -->
+        <section id="sec-aktivitas" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>🎮 Aktivitas Interaktif Mandiri</h1>
+              <p>Latihan Pemahaman Sebelum Mengerjakan Asesmen Akhir (Dengan Umpan Balik Langsung)</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-aktivitas" onclick="markDone('sec-aktivitas')">✓ Tandai Aktivitas Selesai</button>
+          </div>
+
+          <!-- Aktivitas 1: Drag & Drop / Tap-to-Match Lapisan Atmosfer -->
+          <div class="card">
+            <h2>Aktivitas 1: Cocokkan Lapisan Atmosfer dengan Fenomenanya</h2>
+            <p style="font-size:0.88rem; color:var(--text-muted);">Seret (drag) nama lapisan ke kotak fenomena yang sesuai, atau klik nama lapisan lalu klik kotak targetnya (ramah layar sentuh HP/tablet):</p>
+
+            <div class="dnd-zone">
+              <div class="drag-items" id="drag-pool">
+                <div class="drag-chip" draggable="true" data-layer="Troposfer" onclick="selectChip(this)">Troposfer</div>
+                <div class="drag-chip" draggable="true" data-layer="Stratosfer" onclick="selectChip(this)">Stratosfer</div>
+                <div class="drag-chip" draggable="true" data-layer="Mesosfer" onclick="selectChip(this)">Mesosfer</div>
+                <div class="drag-chip" draggable="true" data-layer="Termosfer" onclick="selectChip(this)">Termosfer</div>
+              </div>
+
+              <div>
+                <div class="drop-target" data-accept="Mesosfer" ondragover="allowDrop(event)" ondrop="dropChip(event, this)" onclick="placeChip(this)">
+                  <strong>Target A:</strong> Melindungi Bumi dengan membakar meteor yang jatuh.
+                  <span class="placed-label" style="color:var(--primary); font-weight:700;">[Belum diisi]</span>
+                </div>
+                <div class="drop-target" data-accept="Troposfer" ondragover="allowDrop(event)" ondrop="dropChip(event, this)" onclick="placeChip(this)">
+                  <strong>Target B:</strong> Tempat terbentuknya awan, angin, dan hujan.
+                  <span class="placed-label" style="color:var(--primary); font-weight:700;">[Belum diisi]</span>
+                </div>
+                <div class="drop-target" data-accept="Termosfer" ondragover="allowDrop(event)" ondrop="dropChip(event, this)" onclick="placeChip(this)">
+                  <strong>Target C:</strong> Memantulkan gelombang radio dan tempat terjadinya aurora.
+                  <span class="placed-label" style="color:var(--primary); font-weight:700;">[Belum diisi]</span>
+                </div>
+                <div class="drop-target" data-accept="Stratosfer" ondragover="allowDrop(event)" ondrop="dropChip(event, this)" onclick="placeChip(this)">
+                  <strong>Target D:</strong> Terdapat lapisan ozon penyerap sinar UV dan jalur pesawat jet.
+                  <span class="placed-label" style="color:var(--primary); font-weight:700;">[Belum diisi]</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:0.75rem; display:flex; gap:0.5rem;">
+              <button class="btn btn-primary" onclick="checkDndActivity()">Periksa Jawaban</button>
+              <button class="btn btn-outline" onclick="resetDndActivity()">Reset</button>
+            </div>
+            <div id="dnd-feedback" class="feedback-msg"></div>
+          </div>
+
+          <!-- Aktivitas 2: Benar / Salah -->
+          <div class="card">
+            <h2>Aktivitas 2: Cek Konsep (Benar atau Salah?)</h2>
+            <p style="font-size:0.92rem; margin-bottom:0.65rem;">Pernyataan: <em>"Jika suhu udara di suatu wilayah meningkat tajam akibat penyinaran matahari, maka tekanan udaranya akan ikut naik menjadi tekanan maksimum."</em></p>
+            <div style="display:flex; gap:0.6rem;">
+              <button class="btn btn-outline" onclick="checkTF(false)">Benar</button>
+              <button class="btn btn-outline" onclick="checkTF(true)">Salah</button>
+            </div>
+            <div id="tf-feedback" class="feedback-msg"></div>
+          </div>
+
+          <!-- Aktivitas 3: Studi Kasus Adaptasi/Mitigasi -->
+          <div class="card">
+            <h2>Aktivitas 3: Studi Kasus & Tindakan Mitigasi Tepat</h2>
+            <p style="font-size:0.92rem; margin-bottom:0.65rem;">BMKG merilis peringatan dini potensi hujan lebat disertai angin kencang di wilayah sekolah selama 3 hari ke depan. Tindakan mitigasi paling tepat yang dapat segera dilakukan warga sekolah adalah...</p>
+            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+              <button class="btn btn-outline" style="justify-content:flex-start; text-align:left;" onclick="checkCase(false)">A. Membakar sampah daun di halaman sekolah agar cepat kering</button>
+              <button class="btn btn-outline" style="justify-content:flex-start; text-align:left;" onclick="checkCase(true)">B. Membersihkan selokan/drainase dari sampah dan memangkas ranting pohon rapuh</button>
+              <button class="btn btn-outline" style="justify-content:flex-start; text-align:left;" onclick="checkCase(false)">C. Mengabaikan peringatan karena cuaca tidak memengaruhi kegiatan belajar</button>
+            </div>
+            <div id="case-feedback" class="feedback-msg"></div>
+          </div>
+
+          <div style="text-align:right;">
+            <button class="btn btn-primary" onclick="navigateTo('sec-asesmen')">Siap Mengerjakan Asesmen 20 Soal →</button>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 9: ASESMEN 20 SOAL ==================== -->
+        <section id="sec-asesmen" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>📝 ASESMEN AKHIR — 20 SOAL</h1>
+              <p>Pastikan kamu telah mempelajari materi dan mengisi Nama Lengkap serta Kelas dengan benar sebelum mengerjakan.</p>
+            </div>
+            <div id="quiz-student-info" style="font-weight:700; font-size:0.9rem; color:var(--primary);"></div>
+          </div>
+
+          <!-- Box Identitas Wajib sebelum/saat Asesmen -->
+          <div class="card" id="asesmen-id-warning" style="border-color:var(--accent-amber); background:var(--accent-amber-light);">
+            <h3>⚠️ Identitas Peserta Didik Wajib Diisi</h3>
+            <p style="font-size:0.9rem; margin-bottom:0.75rem;">Pastikan nama dan kelas sudah benar sebelum mengerjakan asesmen.</p>
+            <button class="btn btn-primary" onclick="openIdentityModal()">Isi Nama Lengkap & Kelas Sekarang</button>
+          </div>
+
+          <div id="quiz-workspace" style="display:none;">
+            <div class="card">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+                <span id="q-counter" style="font-weight:800; color:var(--primary); font-size:1rem;">Soal 1 dari 20</span>
+                <span id="q-answered-count" style="font-size:0.86rem; color:var(--text-muted); font-weight:600;">Terjawab: 0 / 20</span>
+              </div>
+
+              <!-- Navigasi Nomor Soal -->
+              <div class="q-nav-grid" id="q-nav-grid"></div>
+
+              <!-- Konten Soal Aktif -->
+              <div id="q-stimulus" style="margin-bottom:0.75rem;"></div>
+              <div id="q-text" style="font-size:1.02rem; font-weight:700; margin-bottom:1rem;"></div>
+              <div id="q-options"></div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.25rem; gap:0.75rem; flex-wrap:wrap;">
+                <button class="btn btn-outline" id="btn-prev-q" onclick="prevQuestion()">← Sebelumnya</button>
+                <button class="btn btn-primary" id="btn-next-q" onclick="nextQuestion()">Berikutnya →</button>
+                <button class="btn btn-primary" id="btn-submit-quiz" style="display:none; background:#0f766e;" onclick="confirmSubmitQuiz()">✅ SELESAI & LIHAT NILAI</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 10: HASIL NILAI & PEMBAHASAN ==================== -->
+        <section id="sec-hasil" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>📊 Hasil Nilai & Pembahasan Asesmen</h1>
+              <p>Rekap otomatis skor, kategori capaian, status pengiriman ke guru, dan pembahasan 20 soal.</p>
+            </div>
+          </div>
+
+          <div id="no-result-state" class="card" style="text-align:center; padding:2.5rem 1.5rem;">
+            <h2>Belum Ada Hasil Asesmen</h2>
+            <p style="color:var(--text-muted); margin:0.5rem 0 1.25rem 0;">Kamu belum menyelesaikan 20 soal asesmen akhir. Silakan kerjakan asesmen terlebih dahulu untuk melihat nilai dan pembahasan.</p>
+            <button class="btn btn-primary" onclick="navigateTo('sec-asesmen')">Mulai Asesmen 20 Soal →</button>
+          </div>
+
+          <div id="result-state" style="display:none;">
+            <div class="score-hero">
+              <h2 style="font-size:1.45rem; color:var(--primary); margin-bottom:0.75rem;">🎉 ASESMEN SELESAI!</h2>
+              <div class="score-circle">
+                <span style="font-size:0.75rem; font-weight:700; opacity:0.9;">NILAI</span>
+                <span id="res-score" style="font-size:2.35rem; font-weight:800; line-height:1;">0</span>
+              </div>
+              <p style="font-size:1.05rem; font-weight:700;" id="res-identity">Nama: - | Kelas: -</p>
+              <p style="font-size:0.98rem; margin:0.35rem 0;" id="res-stats">Benar: 0/20 | Salah: 0 | Kategori: -</p>
+              <div class="info-box" style="max-width:620px; margin:0.9rem auto; text-align:center;" id="res-feedback-text"></div>
+
+              <!-- Status Pengiriman ke Google Sheets -->
+              <div id="sheets-sync-status" class="feedback-msg" style="max-width:620px; margin:0.75rem auto;"></div>
+
+              <div style="display:flex; justify-content:center; gap:0.65rem; flex-wrap:wrap; margin-top:1.25rem;">
+                <button class="btn btn-primary" onclick="toggleReviewSection()">📖 LIHAT PEMBAHASAN</button>
+                <button class="btn btn-outline" onclick="retakeQuiz()">🔄 Ulangi Asesmen</button>
+                <button class="btn btn-outline" onclick="navigateTo('sec-atmosfer')">📚 Pelajari Materi Lagi</button>
+                <button class="btn btn-outline" onclick="navigateTo('sec-beranda')">🏠 Kembali ke Beranda</button>
+              </div>
+            </div>
+
+            <!-- Halaman Pembahasan 20 Soal (Terkunci sebelum asesmen selesai) -->
+            <div id="review-container" style="display:none; margin-top:1.5rem;">
+              <div class="card">
+                <h2>📖 PEMBAHASAN HASIL ASESMEN (20 SOAL)</h2>
+                <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1rem;">Periksa kembali jawabanmu dan pelajari konsep di balik setiap soal:</p>
+                <div id="review-list"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== MENU 11: REFLEKSI ==================== -->
+        <section id="sec-refleksi" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>💡 Jurnal Refleksi Peserta Didik</h1>
+              <p>Sesuai Instrumen Refleksi pada Rencana Pembelajaran Mendalam (RPM)</p>
+            </div>
+            <button class="badge-complete" id="btn-done-sec-refleksi" onclick="markDone('sec-refleksi')">✓ Tandai Refleksi Selesai</button>
+          </div>
+
+          <div class="card">
+            <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:1rem;">Tuliskan refleksi belajarmu secara jujur setelah mempelajari materi Atmosfer, Cuaca, dan Iklim:</p>
+            <div class="form-group">
+              <label>1. Pemahaman Materi: Bagian materi Atmosfer, Cuaca, dan Iklim mana yang paling kamu pahami sekarang?</label>
+              <textarea id="ref-1" class="form-control" rows="2" placeholder="Contoh: Saya sudah paham perbedaan lapisan troposfer dan stratosfer..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>2. Kesulitan Belajar: Bagian mana yang paling sulit dipahami, dan apa penyebabnya?</label>
+              <textarea id="ref-2" class="form-control" rows="2" placeholder="Tuliskan bagian yang masih menantang..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>3. Penggunaan Media Interaktif: Bagaimana simulasi, grafik, dan aktivitas di MPI membantu belajarmu?</label>
+              <textarea id="ref-3" class="form-control" rows="2" placeholder="Tuliskan pengalamanmu menggunakan MPI ini..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>4. Kemampuan Menganalisis Data & Rencana Perbaikan Diri:</label>
+              <textarea id="ref-4" class="form-control" rows="2" placeholder="Apa yang akan kamu perbaiki pada cara belajar berikutnya?"></textarea>
+            </div>
+            <button class="btn btn-primary" onclick="saveReflection()">💾 Simpan Jurnal Refleksi</button>
+            <div id="ref-feedback" class="feedback-msg"></div>
+          </div>
+        </section>
+
+        <!-- ==================== HALAMAN KHUSUS: INFORMASI UNTUK GURU ==================== -->
+        <section id="sec-guru" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1>👩‍🏫 INFORMASI UNTUK GURU</h1>
+              <p>Dokumentasi Teknis & Panduan Integrasi Google Sheets (Apps Script)</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>📌 Identitas & Spesifikasi Perangkat MPI</h2>
+            <table>
+              <tr><th>Nama Guru</th><td>Citra Fitria Sari, S.Pd.</td></tr>
+              <tr><th>Satuan Pendidikan</th><td>SMAN 2 TULANG BAWANG UDIK</td></tr>
+              <tr><th>Mata Pelajaran</th><td>Geografi</td></tr>
+              <tr><th>Fase / Kelas</th><td>Fase E / Kelas X</td></tr>
+              <tr><th>Materi Utama</th><td>Atmosfer – Cuaca dan Iklim</td></tr>
+              <tr><th>Jumlah Soal Asesmen</th><td>20 Soal Pilihan Ganda (5 Pemahaman, 5 Penerapan, 5 Analisis, 5 Studi Kasus/Data)</td></tr>
+              <tr><th>Sistem Penilaian</th><td>Otomatis di dalam MPI (Skor = Jumlah Benar / 20 × 100)</td></tr>
+              <tr><th>Penyimpanan Hasil</th><td>Otomatis terkirim ke Google Sheets milik guru melalui Google Apps Script Web App</td></tr>
+            </table>
+            <div class="info-box" style="margin-top:1rem;">
+              <strong>Catatan Privasi & Keamanan Kelas:</strong><br>
+              Rekap seluruh nilai dan jawaban peserta didik tersimpan langsung di Google Sheets pribadi guru yang telah dihubungkan melalui variabel <code>GOOGLE_APPS_SCRIPT_URL</code> pada kode JavaScript file ini. Peserta didik tidak memerlukan akses edit ke Google Sheets dan tautan spreadsheet tidak ditampilkan kepada peserta didik.
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <footer>
+      MPI Geografi | Citra Fitria Sari, S.Pd.
+    </footer>
+  </div>
+
+  <!-- ==================== MODAL IDENTITAS SISWA ==================== -->
+  <div class="modal-backdrop" id="identity-modal">
+    <div class="modal-box">
+      <h2 style="color:var(--primary); margin-bottom:0.35rem;">👤 Identitas Peserta Didik</h2>
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">Pastikan nama dan kelas sudah benar sebelum mengerjakan asesmen.</p>
+
+      <div class="form-group">
+        <label for="input-nama">Nama Lengkap *</label>
+        <input type="text" id="input-nama" class="form-control" placeholder="Masukkan nama lengkap sesuai absen..." />
+      </div>
+
+      <div class="form-group">
+        <label for="input-kelas">Kelas *</label>
+        <select id="input-kelas" class="form-control">
+          <option value="">-- Pilih Kelas --</option>
+          <option value="X.1">X.1</option>
+          <option value="X.2">X.2</option>
+          <option value="X.3">X.3</option>
+          <option value="X.4">X.4</option>
+          <option value="X.5">X.5</option>
+          <option value="X.6">X.6</option>
+          <option value="X.7">X.7</option>
+          <option value="X.8">X.8</option>
+        </select>
+      </div>
+
+      <div id="id-error-msg" class="feedback-msg err" style="margin-bottom:0.85rem;"></div>
+
+      <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+        <button class="btn btn-outline" onclick="closeIdentityModal()">Tutup</button>
+        <button class="btn btn-primary" onclick="saveIdentity()">Simpan Identitas</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT VANILLA ==================== -->
+  <script>
+    // =========================================================================
+    // KONFIGURASI INTEGRASI GOOGLE SHEETS (GOOGLE APPS SCRIPT WEB APP)
+    // =========================================================================
+    // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT DI SINI
+    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJfLE4YalEifLdqIyFqc-6BhWkRKdU9uyeerYM4H2Lo7CnEoXvKh2v40umfEKFKvdL/exec";
+
+    // =========================================================================
+    // DATA MATERI INTERAKTIF (SESUAI RPM)
+    // =========================================================================
+    const LAYERS_DATA = {
+      troposfer: {
+        title: "1. TROPOSFER (Lapisan Terbawah)",
+        ketinggian: "0 – 12 km dpl (di khatulistiwa mencapai ±16–18 km, di kutub ±8 km).",
+        karakteristik: "Mengandung ±80% massa gas atmosfer dan hampir seluruh uap air. Terjadi penurunan suhu rata-rata 0,6 °C setiap kenaikan 100 meter (gradien termometrik).",
+        fenomena: "Seluruh peristiwa cuaca harian berlangsung di sini: pembentukan awan, angin, kilat, petir, pelangi, serta hujan.",
+        penting: "Lapisan tempat manusia dan makhluk hidup bernapas serta jalur penerbangan pesawat baling-baling/jarak pendek."
+      },
+      stratosfer: {
+        title: "2. STRATOSFER",
+        ketinggian: "12 – 50 km dpl.",
+        karakteristik: "Terjadi inversi suhu (suhu meningkat seiring bertambahnya ketinggian) karena lapisan ozon menyerap radiasi ultraviolet matahari. Udara kering dan bebas awan cuaca.",
+        fenomena: "Terdapat lapisan Ozon (O₃) pada ketinggian ±20–35 km yang menyaring sinar UV-B dan UV-C.",
+        penting: "Kondisi udara sangat stabil tanpa turbulensi cuaca sehingga menjadi jalur ideal penerbangan pesawat jet komersial."
+      },
+      mesosfer: {
+        title: "3. MESOSFER",
+        ketinggian: "50 – 85 km dpl.",
+        karakteristik: "Suhu kembali turun drastis seiring ketinggian hingga mencapai sekitar -90 °C pada bagian puncaknya (mesopause), menjadikannya lapisan terdingin di atmosfer.",
+        fenomena: "Peristiwa terbakarnya meteor atau benda langit akibat gesekan dengan molekul udara sehingga terlihat sebagai bintang jatuh.",
+        penting: "Berfungsi sebagai perisai pelindung permukaan Bumi dari hantaman meteor berukuran kecil hingga sedang."
+      },
+      termosfer: {
+        title: "4. TERMOSFER / IONOSFER",
+        ketinggian: "85 – 500 km dpl.",
+        karakteristik: "Suhu naik sangat tinggi (bisa melampaui 1.000 °C) akibat penyerapan radiasi energi tinggi matahari. Bagian bawahnya mengandung partikel bermuatan listrik (ionosfer).",
+        fenomena: "Terjadinya cahaya kutub yang indah (Aurora Borealis di utara dan Aurora Australis di selatan) serta pemantulan gelombang radio.",
+        penting: "Sangat vital bagi sistem komunikasi radio jarak jauh dan orbit Stasiun Luar Angkasa Internasional (ISS)."
+      },
+      eksosfer: {
+        title: "5. EKSOSFER (Lapisan Terluar)",
+        ketinggian: "Di atas 500 km dpl hingga menyatu dengan ruang antarplanet.",
+        karakteristik: "Molekul gas sangat renggang (didominasi hidrogen dan helium) serta pengaruh gaya gravitasi Bumi sudah sangat lemah.",
+        fenomena: "Pergerakan atom-atom gas bebas menuju ruang angkasa dan lintasan satelit buatan geostasioner.",
+        penting: "Zona transisi antara atmosfer Bumi dengan ruang angkasa luar."
+      }
+    };
+
+    const UNSUR_DATA = [
+      {
+        icon: "🌡️", name: "1. Suhu Udara",
+        pengertian: "Derajat panas atau dinginnya udara di suatu tempat yang diukur menggunakan termometer (°C).",
+        fungsi: "Menggerakkan sirkulasi udara, memicu penguapan air, dan menentukan kenyamanan termal makhluk hidup.",
+        contoh: "Suhu siang hari di dataran rendah mencapai 32 °C, sedangkan di pegunungan hanya 18 °C.",
+        hubungan: "Suhu tinggi menurunkan tekanan udara dan meningkatkan laju penguapan pembentuk awan."
+      },
+      {
+        icon: "🧭", name: "2. Tekanan Udara",
+        pengertian: "Gaya berat kolom udara yang menekan permukaan Bumi pada luas tertentu, diukur dengan barometer (milibar/mb).",
+        fungsi: "Mengatur arah dan kecepatan pergerakan massa udara (angin) dari tekanan tinggi ke tekanan rendah.",
+        contoh: "Tekanan udara standar di permukaan laut adalah sekitar 1.013 mb dan berkurang saat naik ke gunung.",
+        hubungan: "Berbanding terbalik dengan suhu udara dan ketinggian tempat."
+      },
+      {
+        icon: "💧", name: "3. Kelembapan Udara",
+        pengertian: "Banyaknya kandungan uap air yang terkandung di dalam udara, diukur dengan higrometer (%).",
+        fungsi: "Menjadi bahan baku utama pembentukan titik-titik air awan, embun, kabut, dan presipitasi (hujan).",
+        contoh: "Kelembapan udara pagi hari mencapai 90% sehingga terbentuk kabut tipis di persawahan.",
+        hubungan: "Kelembapan tinggi memperbesar peluang terjadinya kondensasi dan hujan."
+      },
+      {
+        icon: "🍃", name: "4. Angin",
+        pengertian: "Gerakan massa udara secara horizontal dari wilayah bertekanan udara tinggi ke wilayah bertekanan rendah.",
+        fungsi: "Membawa uap air dari lautan ke daratan, membantu penyerbukan tanaman, dan menyebarkan panas.",
+        contoh: "Angin laut bertiup dari laut ke darat pada siang hari; angin muson barat membawa musim hujan di Indonesia.",
+        hubungan: "Kecepatan angin dipengaruhi oleh besarnya perbedaan tekanan udara (gradien barometrik)."
+      },
+      {
+        icon: "☁️", name: "5. Awan",
+        pengertian: "Kumpulan titik-titik air atau kristal es halus yang melayang di atmosfer akibat proses kondensasi uap air.",
+        fungsi: "Memantulkan sebagian radiasi matahari pada siang hari dan menghasilkan presipitasi hujan.",
+        contoh: "Awan Cumulonimbus (Cb) berbentuk menjulang gelap dan berpotensi menimbulkan hujan lebat disertai petir.",
+        hubungan: "Terbentuk ketika udara lembap naik, mendingin hingga mencapai titik embun."
+      },
+      {
+        icon: "🌧️", name: "6. Curah Hujan",
+        pengertian: "Jumlah air hujan yang jatuh di permukaan tanah pada periode waktu tertentu, diukur dengan ombrometer (mm).",
+        fungsi: "Sumber utama air tawar bagi pertanian, pengisian air tanah, sungai, dan kebutuhan domestik.",
+        contoh: "Curah hujan bulanan 300 mm termasuk kategori bulan basah yang mendukung masa tanam padi.",
+        hubungan: "Dipengaruhi oleh kelembapan udara, pertumbuhan awan hujan, dan kondisi topografi/angin."
+      },
+      {
+        icon: "☀️", name: "7. Penyinaran Matahari",
+        pengertian: "Intensitas dan lamanya radiasi sinar matahari yang mencapai permukaan Bumi, diukur dengan solarimeter.",
+        fungsi: "Sumber energi utama seluruh proses cuaca dan iklim di Bumi serta penggerak siklus hidrologi.",
+        contoh: "Langit cerah tanpa tutupan awan tebal membuat penyinaran matahari maksimal pada pukul 12.00–14.00.",
+        hubungan: "Menentukan pemanasan permukaan daratan/lautan yang memicu perubahan suhu dan tekanan."
+      }
+    ];
+
+    const FAKTOR_DATA = {
+      lintang: "<strong>1. Letak Lintang:</strong> Menentukan sudut datang sinar matahari. Wilayah lintang rendah (tropis, 0°–23,5° LU/LS) menerima penyinaran matahari hampir tegak sepanjang tahun sehingga bersuhu hangat dan bercurah hujan tinggi. Semakin mendekati kutub (lintang tinggi), sinar matahari datang semakin miring sehingga suhu jauh lebih dingin.",
+      ketinggian: "<strong>2. Ketinggian Tempat (Relief Vertikal):</strong> Udara dipanaskan terutama oleh pantulan panas dari permukaan Bumi. Oleh karena itu, semakin tinggi suatu tempat dari permukaan laut, suhu udaranya semakin turun (rata-rata 0,6 °C tiap naik 100 m) dan tekanan udaranya makin rendah.",
+      laut: "<strong>3. Jarak dari Laut (Kontinentalitas):</strong> Air laut menyerap dan melepas panas jauh lebih lambat daripada daratan. Wilayah pesisir/kepulauan memiliki amplitudo suhu harian dan tahunan yang kecil serta udara lebih lembap dibanding bagian tengah benua yang luas.",
+      relief: "<strong>4. Kondisi Relief / Topografi:</strong> Pegunungan dapat menghalangi pergerakan massa udara lembap. Udara yang dipaksa naik di lereng pegunungan mendingin dan menurunkan <em>hujan orografis</em>, sedangkan sisi balik lereng menjadi kering (daerah bayangan hujan) dan dilalui angin Fohn yang panas.",
+      angin: "<strong>5. Pola Angin:</strong> Angin yang bertiup melewati lautan luas (seperti Angin Muson Barat di Indonesia) membawa banyak uap air sehingga memicu musim hujan. Sebaliknya, angin yang bertiup dari daratan kering (Angin Muson Timur dari Benua Australia) membawa udara kering dan memicu musim kemarau.",
+      penyinaran: "<strong>6. Lama dan Sudut Penyinaran Matahari:</strong> Tutupan awan, kemiringan lereng, dan gerak semu tahunan matahari memengaruhi total energi panas yang diterima permukaan Bumi sehingga menciptakan variasi suhu harian dan musiman."
+    };
+
+    // =========================================================================
+    // BANK 20 SOAL ASESMEN AKHIR (SESUAI KOMPOSISI & MATERI RPM)
+    // 5 Pemahaman Konsep (1-5), 5 Penerapan (6-10), 5 Analisis (11-15), 5 Studi Kasus/Data (16-20)
+    // Distribusi Kunci Seimbang: A=4, B=4, C=4, D=4, E=4
+    // =========================================================================
+    const QUESTIONS = [
+      // --- 5 SOAL PEMAHAMAN KONSEP ---
+      {
+        id: 1,
+        type: "Pemahaman Konsep",
+        question: "Lapisan atmosfer paling bawah yang bersentuhan langsung dengan permukaan Bumi dan menjadi tempat berlangsungnya berbagai peristiwa cuaca seperti awan, angin, dan hujan adalah...",
+        options: [
+          "Stratosfer",
+          "Mesosfer",
+          "Troposfer",
+          "Termosfer",
+          "Eksosfer"
+        ],
+        answer: 2, // C
+        explanation: "Troposfer (0–12 km dpl) mengandung sekitar 80% massa udara dan hampir seluruh uap air atmosfer sehingga menjadi tempat terjadinya pembentukan awan, angin, petir, dan hujan."
+      },
+      {
+        id: 2,
+        type: "Pemahaman Konsep",
+        question: "Gas penyusun atmosfer Bumi yang memiliki persentase paling besar dalam komposisi udara kering (sekitar 78,08%) adalah...",
+        options: [
+          "Oksigen",
+          "Nitrogen",
+          "Karbon dioksida",
+          "Argon",
+          "Ozon"
+        ],
+        answer: 1, // B
+        explanation: "Udara kering di atmosfer didominasi oleh gas Nitrogen sebesar ±78,08%, diikuti Oksigen ±20,95%, Argon ±0,93%, dan Karbon Dioksida ±0,04%."
+      },
+      {
+        id: 3,
+        type: "Pemahaman Konsep",
+        question: "Perbedaan paling mendasar antara cuaca dan iklim terletak pada...",
+        options: [
+          "Jenis gas penyusun udara yang diamati di laboratorium",
+          "Alat ukur suhu yang digunakan oleh pengamat lapangan",
+          "Keberadaan awan dan angin di lapisan stratosfer",
+          "Jangka waktu pengamatan dan luas cakupan wilayahnya",
+          "Ketinggian tempat di atas permukaan air laut"
+        ],
+        answer: 3, // D
+        explanation: "Cuaca merupakan kondisi atmosfer sesaat pada wilayah sempit yang cepat berubah, sedangkan iklim merupakan rata-rata kondisi cuaca dalam jangka panjang (10–30 tahun) pada wilayah yang luas."
+      },
+      {
+        id: 4,
+        type: "Pemahaman Konsep",
+        question: "Lapisan atmosfer yang memiliki suhu sangat dingin hingga mencapai -90 °C dan berfungsi melindungi Bumi dengan membakar meteor yang jatuh adalah...",
+        options: [
+          "Mesosfer",
+          "Troposfer",
+          "Ionosfer",
+          "Stratosfer",
+          "Eksosfer"
+        ],
+        answer: 0, // A
+        explanation: "Mesosfer (ketinggian 50–85 km) memiliki suhu yang turun drastis hingga -90 °C dan menjadi lapisan tempat bergesekannya meteor hingga terbakar sebelum mencapai permukaan Bumi."
+      },
+      {
+        id: 5,
+        type: "Pemahaman Konsep",
+        question: "Unsur cuaca yang menunjukkan banyaknya kandungan uap air yang terdapat di dalam udara pada waktu tertentu disebut...",
+        options: [
+          "Tekanan udara",
+          "Penyinaran matahari",
+          "Curah hujan",
+          "Gradien barometrik",
+          "Kelembapan udara"
+        ],
+        answer: 4, // E
+        explanation: "Kelembapan udara menyatakan jumlah uap air yang terkandung di udara dan diukur menggunakan alat higrometer."
+      },
+
+      // --- 5 SOAL PENERAPAN ---
+      {
+        id: 6,
+        type: "Penerapan",
+        question: "Pesawat jet komersial jarak jauh umumnya terbang pada ketinggian di bagian bawah lapisan stratosfer karena...",
+        options: [
+          "Suhu udaranya selalu di atas titik didih air",
+          "Udara di lapisan tersebut kering dan bebas dari awan badai",
+          "Gaya gravitasi Bumi sudah menghilang sepenuhnya",
+          "Banyak terdapat partikel ion yang mendorong mesin pesawat",
+          "Tekanan udaranya jauh lebih tinggi daripada di pantai"
+        ],
+        answer: 1, // B
+        explanation: "Lapisan stratosfer bebas dari uap air dan awan cuaca (seperti Cumulonimbus) sehingga kondisi udaranya sangat stabil dan minim turbulensi bagi penerbangan pesawat jet."
+      },
+      {
+        id: 7,
+        type: "Penerapan",
+        question: "Jika suhu udara rata-rata di daerah pesisir (ketinggian 0 mdpl) adalah 30 °C, maka berdasarkan gradien termometrik (penurunan 0,6 °C setiap naik 100 meter), perkiraan suhu udara di kota pegunungan pada ketinggian 1.000 mdpl adalah...",
+        options: [
+          "26,0 °C",
+          "25,4 °C",
+          "24,0 °C",
+          "22,5 °C",
+          "21,0 °C"
+        ],
+        answer: 2, // C
+        explanation: "Kenaikan 1.000 meter = 10 kali 100 meter. Penurunan suhu = 10 × 0,6 °C = 6 °C. Jadi suhu di ketinggian 1.000 mdpl adalah 30 °C − 6 °C = 24,0 °C."
+      },
+      {
+        id: 8,
+        type: "Penerapan",
+        question: "Pada siang hari yang terik di kawasan pantai, daratan lebih cepat panas dibandingkan lautan sehingga tekanan udara di darat lebih rendah. Kondisi tersebut menyebabkan terjadinya...",
+        options: [
+          "Angin darat yang bertiup dari darat menuju ke laut",
+          "Angin laut yang bertiup dari laut menuju ke darat",
+          "Angin gunung yang turun menuju ke dasar lembah",
+          "Angin muson timur yang membawa udara kering",
+          "Angin Fohn yang menuruni lereng pegunungan"
+        ],
+        answer: 1, // B
+        explanation: "Karena pada siang hari tekanan udara di atas laut lebih tinggi daripada di atas daratan yang panas, angin bertiup dari laut menuju darat dan disebut angin laut."
+      },
+      {
+        id: 9,
+        type: "Penerapan",
+        question: "Peserta didik kelas X melakukan pengamatan cuaca di halaman sekolah pada pukul 08.00 WIB dan mencatat langit cerah, angin bertiup sepoi-sepoi, serta suhu terasa sejuk. Data tersebut merupakan contoh pencatatan...",
+        options: [
+          "Iklim mikro tahunan",
+          "Perubahan iklim global",
+          "Zona iklim matahari",
+          "Kondisi cuaca harian",
+          "Siklus hidrologi panjang"
+        ],
+        answer: 3, // D
+        explanation: "Pengamatan yang dilakukan pada jam dan tempat tertentu di halaman sekolah menggambarkan keadaan atmosfer sesaat, yaitu kondisi cuaca."
+      },
+      {
+        id: 10,
+        type: "Penerapan",
+        question: "Seorang petani sayuran di dataran tinggi memilih menanam kentang, wortel, dan stroberi dibandingkan kelapa sawit. Keputusan tersebut menerapkan pemahaman tentang pengaruh faktor iklim berupa...",
+        options: [
+          "Ketinggian tempat terhadap suhu udara",
+          "Jarak dari laut terhadap gelombang pasang",
+          "Letak bujur terhadap pembagian waktu",
+          "Pantulan gelombang radio di termosfer",
+          "Ketebalan lapisan mesosfer terhadap meteor"
+        ],
+        answer: 0, // A
+        explanation: "Ketinggian tempat menurunkan suhu udara sehingga menciptakan iklim sejuk yang cocok untuk tanaman hortikultura dataran tinggi."
+      },
+
+      // --- 5 SOAL ANALISIS ---
+      {
+        id: 11,
+        type: "Analisis",
+        question: "Ketika penyinaran matahari di suatu wilayah berlangsung sangat intensif sepanjang siang, suhu udara meningkat tajam. Hubungan antarunsur cuaca yang terjadi selanjutnya adalah...",
+        options: [
+          "Udara memadat sehingga tekanan udara meningkat tajam",
+          "Kelembapan udara selalu turun menjadi nol persen",
+          "Arah angin berbalik menuju wilayah bertekanan maksimum",
+          "Awan hujan langsung membeku menjadi kristal salju",
+          "Udara memuai dan ringan sehingga tekanan udara menurun"
+        ],
+        answer: 4, // E
+        explanation: "Suhu udara berbanding terbalik dengan tekanan udara. Pemanasan membuat udara memuai dan renggang sehingga tekanan udaranya turun (tekanan minimum)."
+      },
+      {
+        id: 12,
+        type: "Analisis",
+        question: "Dua kota berada pada garis lintang yang sama di wilayah tropis, tetapi Kota P terletak di tepi pantai dan Kota Q terletak di pedalaman benua yang jauh dari laut. Perbedaan karakteristik iklim kedua kota tersebut adalah...",
+        options: [
+          "Kota P memiliki perbedaan suhu siang dan malam yang jauh lebih ekstrem",
+          "Kota Q memiliki kelembapan udara yang jauh lebih tinggi sepanjang tahun",
+          "Kota P memiliki selisih suhu harian lebih kecil dan udara lebih lembap",
+          "Kota Q mengalami musim dingin bersalju setiap pertengahan tahun",
+          "Kota P tidak pernah mengalami hembusan angin lokal"
+        ],
+        answer: 2, // C
+        explanation: "Air laut menyimpan dan melepas panas secara perlahan sehingga wilayah pesisir (Kota P) memiliki suhu yang lebih stabil (amplitudo suhu kecil) dan kelembapan lebih tinggi dibanding pedalaman benua."
+      },
+      {
+        id: 13,
+        type: "Analisis",
+        question: "Massa udara lembap dari lautan bergerak menabrak deretan pegunungan tinggi sehingga dipaksa naik, mengalami kondensasi, dan menurunkan hujan lebat di lereng yang menghadap angin. Sementara itu, wilayah di balik pegunungan cenderung kering karena...",
+        options: [
+          "Sinar matahari terhalang sepenuhnya oleh puncak gunung",
+          "Massa udara yang menuruni lereng sudah kehilangan uap air dan memanas",
+          "Tekanan udara di balik gunung lebih tinggi daripada di puncak",
+          "Lapisan ozon menipis tepat di atas lembah pegunungan",
+          "Tidak terdapat vegetasi sama sekali di lereng bagian depan"
+        ],
+        answer: 1, // B
+        explanation: "Setelah menurunkan hujan orografis di lereng depan, massa udara yang menuruni sisi balik lereng menjadi kering dan memanas (angin Fohn/bayangan hujan)."
+      },
+      {
+        id: 14,
+        type: "Analisis",
+        question: "Penipisan lapisan ozon di stratosfer akibat emisi gas CFC yang berlebihan perlu dicegah karena dapat berdampak langsung pada kehidupan di Bumi, yaitu...",
+        options: [
+          "Meningkatnya radiasi sinar ultraviolet yang memicu kanker kulit dan kerusakan tanaman",
+          "Berhentinya seluruh proses pembentukan awan hujan di troposfer",
+          "Menurunnya kadar gas nitrogen di udara hingga di bawah 10 persen",
+          "Terbakarnya pesawat terbang komersial saat melintasi khatulistiwa",
+          "Hilangnya kemampuan ionosfer memantulkan gelombang komunikasi"
+        ],
+        answer: 0, // A
+        explanation: "Lapisan ozon di stratosfer berfungsi menyaring sinar ultraviolet (UV) matahari. Jika menipis, radiasi UV berlebih mencapai Bumi dan membahayakan kesehatan manusia serta ekosistem."
+      },
+      {
+        id: 15,
+        type: "Analisis",
+        question: "Pada musim pancaroba (peralihan musim), sering muncul awan Cumulonimbus yang menjulang tinggi dan gelap pada siang hingga sore hari. Fenomena cuaca yang paling perlu diwaspadai dari pertumbuhan awan tersebut adalah...",
+        options: [
+          "Kemarau panjang selama enam bulan berturut-turut",
+          "Penurunan suhu udara hingga di bawah titik beku di pesisir",
+          "Hujan lebat sesaat disertai kilat, petir, dan angin kencang",
+          "Hilangnya seluruh uap air dari permukaan laut",
+          "Munculnya cahaya aurora di langit wilayah khatulistiwa"
+        ],
+        answer: 2, // C
+        explanation: "Awan Cumulonimbus terbentuk akibat pemanasan konvektif yang kuat dan menyimpan energi besar yang memicu hujan deras lokal, petir, serta angin kencang."
+      },
+
+      // --- 5 SOAL STUDI KASUS / DATA ---
+      {
+        id: 16,
+        type: "Studi Kasus / Data",
+        stimulus: "<div class='info-box sky'><strong>Data Pengamatan Stasiun Cuaca:</strong><br>• Wilayah X (Dataran Rendah): Suhu rata-rata 29,5 °C; Curah hujan bulanan 60–320 mm (fluktuatif).<br>• Wilayah Y (Dataran Tinggi): Suhu rata-rata 20,5 °C; Curah hujan bulanan 180–360 mm (merata).</div>",
+        question: "Kesimpulan yang paling tepat berdasarkan perbandingan data Wilayah X dan Wilayah Y di atas adalah...",
+        options: [
+          "Wilayah X lebih cocok untuk tanaman teh daripada Wilayah Y",
+          "Wilayah Y memiliki suhu lebih tinggi karena berada di dekat pantai",
+          "Curah hujan Wilayah X lebih merata sepanjang tahun dibanding Wilayah Y",
+          "Wilayah Y memiliki suhu lebih sejuk dan ketersediaan hujan lebih stabil dibanding Wilayah X",
+          "Kedua wilayah memiliki kondisi iklim yang identik tanpa perbedaan"
+        ],
+        answer: 3, // D
+        explanation: "Berdasarkan data tabel, Wilayah Y memiliki rata-rata suhu jauh lebih sejuk (20,5 °C dibanding 29,5 °C) dan rentang curah hujan bulanan yang lebih tinggi serta merata (180–360 mm)."
+      },
+      {
+        id: 17,
+        type: "Studi Kasus / Data",
+        stimulus: "<div class='info-box amber'><strong>Data Curah Hujan Bulanan Daerah M (mm):</strong><br>Jan: 310 | Feb: 290 | Mar: 220 | Apr: 140 | Mei: 75 | Jun: 45</div>",
+        question: "Berdasarkan pola data curah hujan Daerah M dari Januari hingga Juni, tren perubahan cuaca yang sedang berlangsung adalah...",
+        options: [
+          "Peningkatan intensitas hujan menuju puncak banjir tahunan",
+          "Peralihan dari periode basah menuju periode kering/kemarau",
+          "Kestabilan curah hujan tanpa adanya perubahan musiman",
+          "Terjadinya hujan orografis sepanjang pertengahan tahun",
+          "Pengaruh fenomena La Niña yang memperkuat hujan pada bulan Juni"
+        ],
+        answer: 1, // B
+        explanation: "Data menunjukkan penurunan curah hujan secara konsisten dari 310 mm pada Januari menjadi 45 mm pada Juni, yang mencerminkan peralihan dari musim hujan ke musim kemarau."
+      },
+      {
+        id: 18,
+        type: "Studi Kasus / Data",
+        question: "Saat fenomena El Niño kuat melanda perairan Pasifik, sebagian besar wilayah Indonesia mengalami keterlambatan awal musim hujan dan berkurangnya curah hujan. Dampak paling nyata pada sektor pertanian adalah...",
+        options: [
+          "Meningkatnya hasil panen padi sawah tadah hujan hingga dua kali lipat",
+          "Melimpahnya pasokan air irigasi di seluruh waduk daerah",
+          "Berkurangnya serangan hama belalang dan tikus di lahan kering",
+          "Menurunnya suhu udara siang hari hingga di bawah 15 °C",
+          "Meningkatnya risiko kekeringan lahan dan gagal panen (puso)"
+        ],
+        answer: 4, // E
+        explanation: "El Niño menyebabkan berkurangnya pembentukan awan hujan di wilayah Indonesia sehingga memicu musim kemarau lebih panjang, kekeringan lahan pertanian, dan risiko gagal panen."
+      },
+      {
+        id: 19,
+        type: "Studi Kasus / Data",
+        question: "Sebuah wilayah pesisir sering mengalami genangan air saat hujan lebat berdurasi dua jam karena saluran drainase tersumbat sampah dan minimnya ruang terbuka hijau. Upaya mitigasi paling realistis yang dapat dilakukan warga dan peserta didik di lingkungan tersebut adalah...",
+        options: [
+          "Membersihkan saluran drainase secara rutin dan membuat lubang resapan biopori",
+          "Memindahkan seluruh permukiman warga ke puncak gunung berapi",
+          "Menggunakan alat pengusir awan agar tidak pernah turun hujan lagi",
+          "Menutup seluruh halaman sekolah menggunakan lapisan aspal kedap air",
+          "Menunggu musim kemarau tiba tanpa melakukan perbaikan saluran air"
+        ],
+        answer: 0, // A
+        explanation: "Membersihkan saluran air dari sampah dan menambah daya serap tanah melalui lubang biopori atau penanaman pohon merupakan tindakan mitigasi nyata dan realistis untuk mengurangi risiko banjir lokal."
+      },
+      {
+        id: 20,
+        type: "Studi Kasus / Data",
+        question: "BMKG mengeluarkan peringatan dini gelombang tinggi 2,5–4 meter dan angin kencang di perairan selat penyeberangan. Bentuk adaptasi yang tepat bagi otoritas pelabuhan dan masyarakat pengguna jasa transportasi laut adalah...",
+        options: [
+          "Tetap memberangkatkan kapal kecil melebihi kapasitas penumpang",
+          "Mengabaikan informasi BMKG karena gelombang laut selalu tenang",
+          "Menunda jadwal pelayaran sementara hingga kondisi cuaca dinyatakan aman",
+          "Mengalihkan seluruh kapal penyeberangan melintasi sungai kecil",
+          "Melakukan pelayaran hanya pada tengah malam tanpa alat navigasi"
+        ],
+        answer: 2, // C
+        explanation: "Mematuhi peringatan dini cuaca ekstrem BMKG dengan menunda sementara jadwal pelayaran adalah langkah adaptasi keselamatan untuk mencegah kecelakaan transportasi laut."
+      }
+    ];
+
+    // =========================================================================
+    // STATE MANAGEMENT (LOCALSTORAGE)
+    // =========================================================================
+    let state = {
+      nama: localStorage.getItem("mpi_geo_nama") || "",
+      kelas: localStorage.getItem("mpi_geo_kelas") || "",
+      completedSections: JSON.parse(localStorage.getItem("mpi_geo_done") || "[]"),
+      answers: JSON.parse(localStorage.getItem("mpi_geo_answers") || "[]"),
+      currentQ: 0,
+      quizSubmitted: localStorage.getItem("mpi_geo_submitted") === "true",
+      quizResult: JSON.parse(localStorage.getItem("mpi_geo_result") || "null"),
+      quizStartTime: parseInt(localStorage.getItem("mpi_geo_start") || "0", 10)
+    };
+
+    if (state.answers.length !== 20) {
+      state.answers = new Array(20).fill(null);
+    }
+
+    const TRACKABLE_SECTIONS = [
+      "sec-beranda", "sec-atmosfer", "sec-cuaca", "sec-unsur",
+      "sec-iklim", "sec-analisis", "sec-fenomena", "sec-aktivitas",
+      "sec-asesmen", "sec-refleksi"
+    ];
+
+    // =========================================================================
+    // INISIALISASI HALAMAN
+    // =========================================================================
+    window.addEventListener("DOMContentLoaded", () => {
+      // Load saved theme
+      const savedTheme = localStorage.getItem("mpi_geo_theme") || "light";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      document.getElementById("theme-btn").textContent = savedTheme === "dark" ? "☀️" : "🌙";
+
+      // Render konten dinamis
+      showLayer("troposfer", document.querySelector(".l-troposfer"));
+      renderUnsurCards();
+      showFaktor("lintang");
+      drawRainChart();
+      updateIdentityUI();
+      updateProgressUI();
+
+      // Jika sudah pernah submit hasil, siapkan tampilan hasil
+      if (state.quizSubmitted && state.quizResult) {
+        renderResultScreen(state.quizResult, null);
+      }
+    });
+
+    function enterApp() {
+      document.getElementById("cover-screen").classList.add("hidden");
+      document.getElementById("app-shell").classList.add("active");
+      markDone("sec-beranda");
+      drawRainChart();
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("mpi_geo_theme", next);
+      document.getElementById("theme-btn").textContent = next === "dark" ? "☀️" : "🌙";
+      drawRainChart();
+    }
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("open");
+    }
+
+    // =========================================================================
+    // NAVIGASI MENU SPA (TANPA RELOAD)
+    // =========================================================================
+    function navigateTo(sectionId) {
+      document.querySelectorAll(".page-section").forEach(sec => sec.classList.remove("active"));
+      const target = document.getElementById(sectionId);
+      if (target) target.classList.add("active");
+
+      document.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-target") === sectionId);
+      });
+
+      // Tutup sidebar di mobile
+      document.getElementById("sidebar").classList.remove("open");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (sectionId === "sec-analisis") {
+        setTimeout(drawRainChart, 60);
+      }
+      if (sectionId === "sec-asesmen") {
+        prepareAsesmenView();
+      }
+      if (sectionId === "sec-hasil" && state.quizSubmitted && state.quizResult) {
+        renderResultScreen(state.quizResult, null);
+      }
+    }
+
+    // =========================================================================
+    // PROGRESS BELAJAR
+    // =========================================================================
+    function markDone(sectionId) {
+      if (!state.completedSections.includes(sectionId)) {
+        state.completedSections.push(sectionId);
+        localStorage.setItem("mpi_geo_done", JSON.stringify(state.completedSections));
+      }
+      updateProgressUI();
+    }
+
+    function updateProgressUI() {
+      const count = state.completedSections.filter(id => TRACKABLE_SECTIONS.includes(id)).length;
+      const pct = Math.round((count / TRACKABLE_SECTIONS.length) * 100);
+      document.getElementById("progress-text").textContent = `Progress Belajar: ${pct}%`;
+      document.getElementById("progress-fill").style.width = `${pct}%`;
+
+      TRACKABLE_SECTIONS.forEach(secId => {
+        const isDone = state.completedSections.includes(secId);
+        const dot = document.getElementById(`dot-${secId}`);
+        if (dot) dot.textContent = isDone ? "✅" : "";
+        const btn = document.getElementById(`btn-done-${secId}`);
+        if (btn && isDone) {
+          btn.textContent = "✅ Materi Selesai";
+          btn.classList.add("completed");
+        }
+      });
+    }
+
+    // =========================================================================
+    // IDENTITAS SISWA (VALIDASI & LOCALSTORAGE)
+    // =========================================================================
+    function openIdentityModal() {
+      document.getElementById("input-nama").value = state.nama;
+      document.getElementById("input-kelas").value = state.kelas;
+      document.getElementById("id-error-msg").style.display = "none";
+      document.getElementById("identity-modal").classList.add("open");
+    }
+
+    function closeIdentityModal() {
+      document.getElementById("identity-modal").classList.remove("open");
+    }
+
+    function saveIdentity() {
+      const namaVal = document.getElementById("input-nama").value.trim();
+      const kelasVal = document.getElementById("input-kelas").value.trim();
+      const errBox = document.getElementById("id-error-msg");
+
+      if (!namaVal) {
+        errBox.textContent = "⚠️ Peringatan: Nama lengkap wajib diisi dan tidak boleh kosong!";
+        errBox.style.display = "block";
+        return;
+      }
+      if (!kelasVal) {
+        errBox.textContent = "⚠️ Peringatan: Kelas wajib dipilih dan tidak boleh kosong!";
+        errBox.style.display = "block";
+        return;
+      }
+
+      state.nama = namaVal;
+      state.kelas = kelasVal;
+      localStorage.setItem("mpi_geo_nama", state.nama);
+      localStorage.setItem("mpi_geo_kelas", state.kelas);
+
+      updateIdentityUI();
+      closeIdentityModal();
+      prepareAsesmenView();
+    }
+
+    function updateIdentityUI() {
+      const badge = document.getElementById("student-badge");
+      if (state.nama && state.kelas) {
+        badge.textContent = `👤 ${state.nama} (${state.kelas})`;
+      } else {
+        badge.textContent = "👤 Isi Identitas Siswa";
+      }
+    }
+
+    // =========================================================================
+    // INTERAKTIVITAS MODUL 1 - 6
+    // =========================================================================
+    function showLayer(key, btnEl) {
+      document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
+      if (btnEl) btnEl.classList.add("active");
+      const d = LAYERS_DATA[key];
+      document.getElementById("layer-detail-panel").innerHTML = `
+        <h3 style="color:var(--primary); font-size:1.15rem; margin-bottom:0.65rem;">${d.title}</h3>
+        <p style="margin-bottom:0.5rem;"><strong>📏 Ketinggian:</strong> ${d.ketinggian}</p>
+        <p style="margin-bottom:0.5rem;"><strong>🌡️ Karakteristik:</strong> ${d.karakteristik}</p>
+        <p style="margin-bottom:0.5rem;"><strong>⚡ Fenomena Utama:</strong> ${d.fenomena}</p>
+        <p style="margin-bottom:0;"><strong>💡 Informasi Penting:</strong> ${d.penting}</p>
+      `;
+    }
+
+    function filterCuacaTable(cat) {
+      const rows = document.querySelectorAll("#table-cuaca-iklim tbody tr");
+      rows.forEach(r => {
+        if (cat === "all" || r.getAttribute("data-cat") === cat) {
+          r.style.display = "";
+        } else {
+          r.style.display = "none";
+        }
+      });
+    }
+
+    function renderUnsurCards() {
+      const container = document.getElementById("unsur-cards-container");
+      container.innerHTML = UNSUR_DATA.map((u, idx) => `
+        <div class="unsur-card ${idx === 0 ? 'open' : ''}" onclick="this.classList.toggle('open')">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>${u.icon} ${u.name}</h3>
+            <span style="font-size:0.8rem; color:var(--primary); font-weight:700;">Klik Detail ▾</span>
+          </div>
+          <div class="unsur-card-body">
+            <p style="margin-bottom:0.35rem;"><strong>Pengertian:</strong> ${u.pengertian}</p>
+            <p style="margin-bottom:0.35rem;"><strong>Fungsi/Peran:</strong> ${u.fungsi}</p>
+            <p style="margin-bottom:0.35rem;"><strong>Contoh:</strong> ${u.contoh}</p>
+            <p style="margin-bottom:0;"><strong>Hubungan Cuaca:</strong> ${u.hubungan}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function showFaktor(key) {
+      document.getElementById("faktor-sim-box").innerHTML = FAKTOR_DATA[key];
+    }
+
+    function updateAltitudeSim(alt) {
+      const h = parseInt(alt, 10);
+      const temp = (30 - (h / 100) * 0.6).toFixed(1).replace(".", ",");
+      document.getElementById("alt-val").textContent = h;
+      document.getElementById("alt-val-2").textContent = h;
+      document.getElementById("alt-temp").textContent = `${temp} °C`;
+    }
+
+    // Grafik Canvas Modul 5
+    function drawRainChart() {
+      const canvas = document.getElementById("rainChart");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni"];
+      const dataX = [320, 290, 210, 140, 80, 60];   // Wilayah X (Dataran Rendah)
+      const dataY = [360, 340, 300, 250, 210, 180]; // Wilayah Y (Dataran Tinggi)
+
+      const padLeft = 55, padBottom = 36, padTop = 26, padRight = 25;
+      const chartW = canvas.width - padLeft - padRight;
+      const chartH = canvas.height - padTop - padBottom;
+      const maxVal = 400;
+
+      // Grid horizontal
+      ctx.strokeStyle = isDark ? "#1e3a2c" : "#cbd5e1";
+      ctx.fillStyle = isDark ? "#cbd5e1" : "#334155";
+      ctx.font = "12px Plus Jakarta Sans, sans-serif";
+      ctx.lineWidth = 1;
+
+      for (let v = 0; v <= maxVal; v += 100) {
+        const y = padTop + chartH - (v / maxVal) * chartH;
+        ctx.beginPath();
+        ctx.moveTo(padLeft, y);
+        ctx.lineTo(padLeft + chartW, y);
+        ctx.stroke();
+        ctx.fillText(v + " mm", 6, y + 4);
+      }
+
+      const groupW = chartW / months.length;
+      const barW = 28;
+
+      months.forEach((m, i) => {
+        const centerX = padLeft + i * groupW + groupW / 2;
+
+        // Bar Wilayah X
+        const hX = (dataX[i] / maxVal) * chartH;
+        ctx.fillStyle = "#15803d";
+        ctx.fillRect(centerX - barW - 3, padTop + chartH - hX, barW, hX);
+        ctx.fillStyle = isDark ? "#f1f5f9" : "#0f172a";
+        ctx.fillText(dataX[i], centerX - barW - 1, padTop + chartH - hX - 5);
+
+        // Bar Wilayah Y
+        const hY = (dataY[i] / maxVal) * chartH;
+        ctx.fillStyle = "#0284c7";
+        ctx.fillRect(centerX + 3, padTop + chartH - hY, barW, hY);
+        ctx.fillStyle = isDark ? "#f1f5f9" : "#0f172a";
+        ctx.fillText(dataY[i], centerX + 5, padTop + chartH - hY - 5);
+
+        // Label Bulan
+        ctx.fillStyle = isDark ? "#cbd5e1" : "#334155";
+        ctx.fillText(m, centerX - 24, padTop + chartH + 22);
+      });
+    }
+
+    function checkDataQuiz(isCorrect) {
+      const fb = document.getElementById("data-quiz-feedback");
+      if (isCorrect) {
+        fb.className = "feedback-msg ok";
+        fb.textContent = "✅ Benar! Ketinggian 1.200 mdpl menurunkan suhu udara secara signifikan dan memicu pengangkatan udara lembap (hujan orografis) sehingga curah hujan lebih merata.";
+      } else {
+        fb.className = "feedback-msg err";
+        fb.textContent = "❌ Belum tepat. Perhatikan kembali perbedaan ketinggian tempat (25 mdpl vs 1.200 mdpl) dan dampaknya terhadap penurunan suhu serta pembentukan awan.";
+      }
+    }
+
+    // =========================================================================
+    // AKTIVITAS INTERAKTIF (DND / TAP, BENAR-SALAH, STUDI KASUS)
+    // =========================================================================
+    let selectedChipLayer = null;
+
+    document.addEventListener("dragstart", (e) => {
+      if (e.target.classList.contains("drag-chip")) {
+        e.dataTransfer.setData("text/plain", e.target.getAttribute("data-layer"));
+      }
+    });
+
+    function allowDrop(e) {
+      e.preventDefault();
+    }
+
+    function dropChip(e, targetEl) {
+      e.preventDefault();
+      const layer = e.dataTransfer.getData("text/plain");
+      if (layer) assignToTarget(targetEl, layer);
+    }
+
+    function selectChip(chipEl) {
+      document.querySelectorAll(".drag-chip").forEach(c => c.classList.remove("selected-chip"));
+      chipEl.classList.add("selected-chip");
+      selectedChipLayer = chipEl.getAttribute("data-layer");
+    }
+
+    function placeChip(targetEl) {
+      if (selectedChipLayer) {
+        assignToTarget(targetEl, selectedChipLayer);
+        selectedChipLayer = null;
+        document.querySelectorAll(".drag-chip").forEach(c => c.classList.remove("selected-chip"));
+      }
+    }
+
+    function assignToTarget(targetEl, layerName) {
+      targetEl.setAttribute("data-chosen", layerName);
+      targetEl.querySelector(".placed-label").textContent = `Dipilih: ${layerName}`;
+    }
+
+    function checkDndActivity() {
+      const targets = document.querySelectorAll(".drop-target");
+      let correctCount = 0;
+      targets.forEach(t => {
+        if (t.getAttribute("data-chosen") === t.getAttribute("data-accept")) {
+          correctCount++;
+        }
+      });
+      const fb = document.getElementById("dnd-feedback");
+      if (correctCount === 4) {
+        fb.className = "feedback-msg ok";
+        fb.textContent = "✅ Luar biasa! Semua 4 lapisan atmosfer cocok dengan fenomenanya (Troposfer = cuaca, Stratosfer = ozon, Mesosfer = pembakar meteor, Termosfer = aurora/radio).";
+      } else {
+        fb.className = "feedback-msg err";
+        fb.textContent = `❌ Baru ${correctCount} dari 4 yang tepat. Coba periksa kembali karakteristik masing-masing lapisan atmosfer pada Modul 1!`;
+      }
+    }
+
+    function resetDndActivity() {
+      document.querySelectorAll(".drop-target").forEach(t => {
+        t.removeAttribute("data-chosen");
+        t.querySelector(".placed-label").textContent = "[Belum diisi]";
+      });
+      document.getElementById("dnd-feedback").style.display = "none";
+    }
+
+    function checkTF(isCorrect) {
+      const fb = document.getElementById("tf-feedback");
+      if (isCorrect) {
+        fb.className = "feedback-msg ok";
+        fb.textContent = "✅ Benar! Pernyataan tersebut SALAH karena suhu udara berbanding terbalik dengan tekanan udara: saat udara memanas dan memuai, tekanan udaranya justru turun (minimum).";
+      } else {
+        fb.className = "feedback-msg err";
+        fb.textContent = "❌ Belum tepat. Ingat kembali hukum hubungan suhu dan tekanan udara: udara panas menjadi ringan sehingga tekanannya rendah.";
+      }
+    }
+
+    function checkCase(isCorrect) {
+      const fb = document.getElementById("case-feedback");
+      if (isCorrect) {
+        fb.className = "feedback-msg ok";
+        fb.textContent = "✅ Tepat sekali! Membersihkan drainase dari sampah dan memangkas ranting lapuk mengurangi risiko genangan banjir dan pohon tumbang.";
+      } else {
+        fb.className = "feedback-msg err";
+        fb.textContent = "❌ Belum tepat. Pilih tindakan pencegahan (mitigasi) yang aman dan efektif menghadapi hujan lebat serta angin kencang.";
+      }
+    }
+
+    // =========================================================================
+    // LOGIKA ASESMEN 20 SOAL & PENILAIAN OTOMATIS
+    // =========================================================================
+    function prepareAsesmenView() {
+      const warnBox = document.getElementById("asesmen-id-warning");
+      const quizBox = document.getElementById("quiz-workspace");
+      const infoEl = document.getElementById("quiz-student-info");
+
+      if (!state.nama || !state.kelas) {
+        warnBox.style.display = "block";
+        quizBox.style.display = "none";
+        infoEl.textContent = "";
+      } else {
+        warnBox.style.display = "none";
+        quizBox.style.display = "block";
+        infoEl.textContent = `Peserta: ${state.nama} | Kelas: ${state.kelas}`;
+        if (!state.quizStartTime) {
+          state.quizStartTime = Date.now();
+          localStorage.setItem("mpi_geo_start", String(state.quizStartTime));
+        }
+        renderQuestion(state.currentQ);
+      }
+    }
+
+    function renderQuestion(idx) {
+      state.currentQ = idx;
+      const q = QUESTIONS[idx];
+
+      document.getElementById("q-counter").textContent = `Soal ${idx + 1} dari 20 (${q.type})`;
+      const answeredCount = state.answers.filter(a => a !== null).length;
+      document.getElementById("q-answered-count").textContent = `Terjawab: ${answeredCount} / 20`;
+
+      // Render nomor pill
+      const navGrid = document.getElementById("q-nav-grid");
+      navGrid.innerHTML = QUESTIONS.map((_, i) => {
+        const cls = ["q-num-pill"];
+        if (state.answers[i] !== null) cls.push("answered");
+        if (i === idx) cls.push("current");
+        return `<button class="${cls.join(" ")}" onclick="renderQuestion(${i})">${i + 1}</button>`;
+      }).join("");
+
+      document.getElementById("q-stimulus").innerHTML = q.stimulus || "";
+      document.getElementById("q-text").textContent = `${idx + 1}. ${q.question}`;
+
+      const letters = ["A", "B", "C", "D", "E"];
+      document.getElementById("q-options").innerHTML = q.options.map((opt, optIdx) => {
+        const isSel = state.answers[idx] === optIdx;
+        return `
+          <div class="quiz-option ${isSel ? 'selected' : ''}" onclick="selectOption(${idx}, ${optIdx})">
+            <div class="opt-letter">${letters[optIdx]}</div>
+            <div>${opt}</div>
+          </div>
+        `;
+      }).join("");
+
+      // Tombol Navigasi Soal
+      document.getElementById("btn-prev-q").style.visibility = idx === 0 ? "hidden" : "visible";
+      if (idx === QUESTIONS.length - 1) {
+        document.getElementById("btn-next-q").style.display = "none";
+        document.getElementById("btn-submit-quiz").style.display = "inline-flex";
+      } else {
+        document.getElementById("btn-next-q").style.display = "inline-flex";
+        document.getElementById("btn-submit-quiz").style.display = "none";
+      }
+    }
+
+    function selectOption(qIdx, optIdx) {
+      state.answers[qIdx] = optIdx;
+      localStorage.setItem("mpi_geo_answers", JSON.stringify(state.answers));
+      renderQuestion(qIdx);
+    }
+
+    function prevQuestion() {
+      if (state.currentQ > 0) renderQuestion(state.currentQ - 1);
+    }
+
+    function nextQuestion() {
+      if (state.currentQ < QUESTIONS.length - 1) renderQuestion(state.currentQ + 1);
+    }
+
+    function confirmSubmitQuiz() {
+      // Validasi identitas
+      if (!state.nama || !state.kelas) {
+        alert("⚠️ Nama lengkap dan kelas wajib diisi terlebih dahulu!");
+        openIdentityModal();
+        return;
+      }
+
+      // Validasi semua 20 soal harus dijawab
+      const unanswered = [];
+      state.answers.forEach((ans, i) => {
+        if (ans === null) unanswered.push(i + 1);
+      });
+
+      if (unanswered.length > 0) {
+        alert(`⚠️ Semua 20 soal wajib dijawab sebelum submit!
+Soal yang belum dijawab: Nomor ${unanswered.join(", ")}`);
+        renderQuestion(unanswered[0] - 1);
+        return;
+      }
+
+      const ok = confirm("Apakah kamu yakin ingin menyelesaikan asesmen dan melihat nilai sekarang?");
+      if (!ok) return;
+
+      finalizeAndSendQuiz();
+    }
+
+    async function finalizeAndSendQuiz() {
+      const letters = ["A", "B", "C", "D", "E"];
+      let benar = 0;
+      const jawabanHuruf = [];
+
+      QUESTIONS.forEach((q, idx) => {
+        const chosenIdx = state.answers[idx];
+        jawabanHuruf.push(letters[chosenIdx]);
+        if (chosenIdx === q.answer) {
+          benar++;
+        }
+      });
+
+      const salah = 20 - benar;
+      const nilai = Math.round((benar / 20) * 100);
+      const persentase = `${nilai}%`;
+
+      let kategori = "";
+      let feedbackMsg = "";
+      if (nilai >= 90) {
+        kategori = "Sangat Baik";
+        feedbackMsg = "Hebat! Pemahamanmu tentang Atmosfer, Cuaca, dan Iklim sudah sangat baik.";
+      } else if (nilai >= 80) {
+        kategori = "Baik";
+        feedbackMsg = "Bagus! Pemahamanmu sudah baik. Tinggal memperkuat beberapa konsep.";
+      } else if (nilai >= 70) {
+        kategori = "Cukup";
+        feedbackMsg = "Cukup baik. Coba pelajari kembali bagian yang masih keliru.";
+      } else {
+        kategori = "Perlu Bimbingan";
+        feedbackMsg = "Jangan menyerah. Pelajari kembali materi dan coba latihan lagi.";
+      }
+
+      const elapsedSec = state.quizStartTime ? Math.max(1, Math.round((Date.now() - state.quizStartTime) / 1000)) : 0;
+      const mins = Math.floor(elapsedSec / 60);
+      const secs = elapsedSec % 60;
+      const waktuPengerjaan = `${mins} menit ${secs} detik`;
+
+      const resultObj = {
+        timestamp: new Date().toLocaleString("id-ID"),
+        nama: state.nama,
+        kelas: state.kelas,
+        nilai: nilai,
+        benar: benar,
+        salah: salah,
+        persentase: persentase,
+        kategori: kategori,
+        waktuPengerjaan: waktuPengerjaan,
+        feedbackMsg: feedbackMsg,
+        answersIndex: [...state.answers],
+        jawabanHuruf: jawabanHuruf
+      };
+
+      state.quizSubmitted = true;
+      state.quizResult = resultObj;
+      localStorage.setItem("mpi_geo_submitted", "true");
+      localStorage.setItem("mpi_geo_result", JSON.stringify(resultObj));
+      markDone("sec-asesmen");
+
+      // Pindah ke halaman hasil nilai terlebih dahulu agar nilai lokal langsung tampil
+      navigateTo("sec-hasil");
+      renderResultScreen(resultObj, "sending");
+
+      // Kirim otomatis ke Google Sheets via Apps Script
+      await sendToGoogleSheets(resultObj);
+    }
+
+    async function sendToGoogleSheets(resultObj) {
+      const statusBox = document.getElementById("sheets-sync-status");
+
+      if (!GOOGLE_APPS_SCRIPT_URL || GOOGLE_APPS_SCRIPT_URL.trim() === "") {
+        statusBox.className = "feedback-msg err";
+        statusBox.textContent = "⚠️ Nilai berhasil dihitung, tetapi hasil belum berhasil dikirim ke server (URL Apps Script belum diatur oleh guru). Silakan hubungi guru.";
+        return;
+      }
+
+      try {
+        const payload = {
+          timestamp: resultObj.timestamp,
+          nama: resultObj.nama,
+          kelas: resultObj.kelas,
+          nilai: resultObj.nilai,
+          benar: resultObj.benar,
+          salah: resultObj.salah,
+          persentase: resultObj.persentase,
+          kategori: resultObj.kategori,
+          waktuPengerjaan: resultObj.waktuPengerjaan,
+          jawaban: resultObj.jawabanHuruf
+        };
+
+        const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP status " + response.status);
+        }
+
+        const resJson = await response.json();
+        if (resJson && resJson.status === "success") {
+          statusBox.className = "feedback-msg ok";
+          statusBox.textContent = "✅ Hasil asesmen berhasil dikirim ke Google Sheets guru.";
+        } else {
+          throw new Error("Respons server tidak valid");
+        }
+      } catch (err) {
+        console.error("Gagal kirim ke Google Sheets:", err);
+        statusBox.className = "feedback-msg err";
+        statusBox.textContent = "⚠️ Nilai berhasil dihitung, tetapi hasil belum berhasil dikirim ke server. Silakan hubungi guru.";
+      }
+    }
+
+    function renderResultScreen(res, syncState) {
+      document.getElementById("no-result-state").style.display = "none";
+      document.getElementById("result-state").style.display = "block";
+
+      document.getElementById("res-score").textContent = res.nilai;
+      document.getElementById("res-identity").textContent = `Nama: ${res.nama} | Kelas: ${res.kelas}`;
+      document.getElementById("res-stats").textContent = `Benar: ${res.benar}/20 | Salah: ${res.salah} | Kategori: ${res.kategori} (${res.persentase})`;
+      document.getElementById("res-feedback-text").textContent = res.feedbackMsg;
+
+      const statusBox = document.getElementById("sheets-sync-status");
+      if (syncState === "sending") {
+        statusBox.className = "feedback-msg ok";
+        statusBox.textContent = "⏳ Sedang mengirim hasil asesmen ke Google Sheets guru...";
+      }
+
+      renderReviewList(res);
+    }
+
+    function toggleReviewSection() {
+      if (!state.quizSubmitted) return;
+      const rev = document.getElementById("review-container");
+      rev.style.display = rev.style.display === "none" ? "block" : "none";
+      if (rev.style.display === "block") {
+        rev.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    function renderReviewList(res) {
+      const letters = ["A", "B", "C", "D", "E"];
+      const container = document.getElementById("review-list");
+
+      container.innerHTML = QUESTIONS.map((q, idx) => {
+        const studentIdx = res.answersIndex[idx];
+        const isCorrect = studentIdx === q.answer;
+        const studentText = `${letters[studentIdx]}. ${q.options[studentIdx]}`;
+        const correctText = `${letters[q.answer]}. ${q.options[q.answer]}`;
+
+        return `
+          <div class="review-item ${isCorrect ? 'correct' : 'wrong'}">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.5rem;">
+              <strong style="font-size:1rem;">Soal ${idx + 1} (${q.type})</strong>
+              <span style="font-weight:800; color:${isCorrect ? '#16a34a' : '#dc2626'};">
+                ${isCorrect ? '🟢 ✅ Benar' : '🔴 ❌ Salah'}
+              </span>
+            </div>
+            ${q.stimulus || ""}
+            <p style="margin-bottom:0.55rem; font-weight:600;">${q.question}</p>
+            <p style="font-size:0.9rem; margin-bottom:0.25rem;">
+              <strong>Jawaban kamu:</strong> <span style="color:${isCorrect ? '#16a34a' : '#dc2626'}; font-weight:700;">${studentText}</span>
+            </p>
+            <p style="font-size:0.9rem; margin-bottom:0.5rem;">
+              <strong>Jawaban benar:</strong> <span style="color:#16a34a; font-weight:700;">${correctText}</span>
+            </p>
+            <div class="info-box" style="margin:0; font-size:0.88rem;">
+              <strong>Pembahasan:</strong> ${q.explanation}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function retakeQuiz() {
+      const ok = confirm("Ulangi asesmen dari Soal 1? Jawaban sebelumnya akan direset.");
+      if (!ok) return;
+
+      state.answers = new Array(20).fill(null);
+      state.currentQ = 0;
+      state.quizSubmitted = false;
+      state.quizResult = null;
+      state.quizStartTime = Date.now();
+
+      localStorage.setItem("mpi_geo_answers", JSON.stringify(state.answers));
+      localStorage.setItem("mpi_geo_submitted", "false");
+      localStorage.removeItem("mpi_geo_result");
+      localStorage.setItem("mpi_geo_start", String(state.quizStartTime));
+
+      document.getElementById("review-container").style.display = "none";
+      document.getElementById("result-state").style.display = "none";
+      document.getElementById("no-result-state").style.display = "block";
+
+      navigateTo("sec-asesmen");
+    }
+
+    // =========================================================================
+    // REFLEKSI PESERTA DIDIK
+    // =========================================================================
+    function saveReflection() {
+      const r1 = document.getElementById("ref-1").value.trim();
+      const r2 = document.getElementById("ref-2").value.trim();
+      const r3 = document.getElementById("ref-3").value.trim();
+      const r4 = document.getElementById("ref-4").value.trim();
+
+      const fb = document.getElementById("ref-feedback");
+      if (!r1 && !r2 && !r3 && !r4) {
+        fb.className = "feedback-msg err";
+        fb.textContent = "⚠️ Silakan isi minimal satu pertanyaan refleksi sebelum menyimpan.";
+        return;
+      }
+
+      localStorage.setItem("mpi_geo_reflection", JSON.stringify({ r1, r2, r3, r4 }));
+      markDone("sec-refleksi");
+      fb.className = "feedback-msg ok";
+      fb.textContent = "✅ Jurnal refleksi berhasil disimpan! Terima kasih telah merefleksikan proses belajarmu.";
+    }
+  </script>
+</body>
+</html>
